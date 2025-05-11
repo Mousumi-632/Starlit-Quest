@@ -3,10 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(IGazeProvider))]
 public class GazeInteractor : MonoBehaviour
 {
-    public float maxDistance = 20f;
-    public float dwellTime = 2f;
-    public LayerMask targetLayer;
-    public Material highlightMaterial;
+    [SerializeField] private float maxDistance = 20f;
+    [SerializeField] private float dwellTime = 2f;
+    [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private Material highlightMaterial;
 
     private IGazeProvider gazeProvider;
     private GameObject currentTarget;

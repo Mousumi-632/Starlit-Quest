@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class ExampleStarResponder : MonoBehaviour, IGazeResponder
 {
-    public Transform moveTarget;
-    public float moveSpeed = 1f;
+    [SerializeField] private Transform moveTarget;
+    [SerializeField] private float moveSpeed = 1f;
 
     public void OnGazeEnter()
     {
         Debug.Log("Star hovered: " + name);
-        // Optional visual effect
+        
     }
 
     public void OnGazeExit()
     {
         Debug.Log("Star gaze exited: " + name);
-        // Optional effect cleanup
+        
     }
 
     public void OnGazeSelect()
@@ -32,6 +32,6 @@ public class ExampleStarResponder : MonoBehaviour, IGazeResponder
             yield return null;
         }
 
-        // Optional: snap into jar, play sound, etc.
+        // snap into jar, play sound, etc.
     }
 }
