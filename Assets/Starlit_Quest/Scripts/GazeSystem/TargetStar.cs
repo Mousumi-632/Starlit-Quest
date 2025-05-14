@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TargetStar : MonoBehaviour, IGazeResponder
 {
-    public float gazeSelectionDurationThreshold = 1f;
+    public float gazeSelectionDurationThreshold = 1000f;
     
     [Header("Materials")]
     [SerializeField] private Material gazeDefaultMaterial;
@@ -14,23 +14,28 @@ public class TargetStar : MonoBehaviour, IGazeResponder
     private Material thisMaterial;
     private bool isGazing = false;
     private float elpasedGazeDuration = 0f;
+
+    private float testDemoTimer = 0f;
     
     public void OnGazeEnter()
     {
         isGazing = true;
         thisMaterial = gazeOngoingMaterial;
+        Debug.Log("OnGazeEnter");
     }
 
     public void OnGazeExit()
     {
         GazeSelectionFailed();
         thisMaterial = gazeDefaultMaterial;
+        Debug.Log("OnGazeExit");
     }
 
     public void OnGazeSelect()
     {
         thisMaterial = gazeCompleteMaterial;
         // the star moves to the glass jar
+        Debug.Log("OnGazeSelect");
     }
     
     private void Start()
