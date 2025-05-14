@@ -6,7 +6,7 @@ public class CloudDOTweenMover : MonoBehaviour
     [SerializeField] private float radius = 5f;
     [SerializeField] private float duration = 4f;
     [SerializeField] private Transform centerPoint;
-    [SerializeField] private float height = 10f; // Height above ground (Y position)
+    [SerializeField] private float height = 5f;  // Height above ground
 
     void Start()
     {
@@ -14,13 +14,18 @@ public class CloudDOTweenMover : MonoBehaviour
         for (int i = 0; i <= 360; i++)
         {
             float rad = Mathf.Deg2Rad * i;
+            // Set Y to desired sky height instead of centerPoint's Y
             path[i] = new Vector3(
                 centerPoint.position.x + Mathf.Cos(rad) * radius,
-                height, // Fixed height
+                height,
                 centerPoint.position.z + Mathf.Sin(rad) * radius
             );
         }
 
+        // Place cloud at the start of the path (in the sky)
+        transform.position = path[0];
+
+        // Start circular tween
         transform.DOPath(path, duration, PathType.Linear)
                  .SetLoops(-1)
                  .SetEase(Ease.Linear);
