@@ -2327,6 +2327,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 59459624474323261, guid: 1ed09709427a8497c906dbb1143e7c59, type: 3}
+      propertyPath: gazeSelectionDurationThreshold
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1627130820782616163, guid: 1ed09709427a8497c906dbb1143e7c59, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.055

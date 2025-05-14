@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-public class TargetStar : MonoBehaviour, IGazeResponder
+public class TargetStar : MonoBehaviour
 {
     public float gazeSelectionDurationThreshold = 1000f;
     
@@ -11,7 +11,7 @@ public class TargetStar : MonoBehaviour, IGazeResponder
     [SerializeField] private Material gazeOngoingMaterial;
     [SerializeField] private Material gazeCompleteMaterial;
     
-    private Material thisMaterial;
+    private Renderer renderer;
     private bool isGazing = false;
     private float elpasedGazeDuration = 0f;
 
@@ -20,28 +20,28 @@ public class TargetStar : MonoBehaviour, IGazeResponder
     public void OnGazeEnter()
     {
         isGazing = true;
-        thisMaterial = gazeOngoingMaterial;
+        renderer.material = gazeOngoingMaterial;
         Debug.Log("OnGazeEnter");
     }
 
     public void OnGazeExit()
     {
         GazeSelectionFailed();
-        thisMaterial = gazeDefaultMaterial;
+        renderer.material = gazeDefaultMaterial;
         Debug.Log("OnGazeExit");
     }
 
     public void OnGazeSelect()
     {
-        thisMaterial = gazeCompleteMaterial;
+        renderer.material = gazeCompleteMaterial;
         // the star moves to the glass jar
         Debug.Log("OnGazeSelect");
     }
     
     private void Start()
     {
-        thisMaterial = GetComponent<Renderer>().material;
-        thisMaterial = gazeDefaultMaterial;
+        renderer = GetComponent<Renderer>();
+        renderer.material = gazeDefaultMaterial;
     }
 
     private void Update()

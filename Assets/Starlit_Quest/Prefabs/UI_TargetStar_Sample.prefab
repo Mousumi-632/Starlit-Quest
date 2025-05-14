@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87226adab18c440dc86ea462ccf49e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gazeSelectionDurationThreshold: 1000
   gazeDefaultMaterial: {fileID: 2100000, guid: d8ffa0bafd7e940e0bb9724e9f3dcf57, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
