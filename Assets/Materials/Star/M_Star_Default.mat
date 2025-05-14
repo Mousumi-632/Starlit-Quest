@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6202134700065794702
+--- !u!114 &-253539127097391932
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_Star_GazeOngoing
-  m_Shader: {fileID: -6465566751694194690, guid: c92433d5ce412450baaf7f908b1bd9ae, type: 3}
+  m_Name: M_Star_Default
+  m_Shader: {fileID: -6465566751694194690, guid: 7a516b1c7a2824b23b1f167bd39aec9b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -56,7 +56,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 1, g: 0.8991845, b: 0, a: 0}
-    - _Size: {r: 0.8, g: 1.2, b: 0, a: 0}
+    - _Base_Color: {r: 0.25, g: 0.22479613, b: 0, a: 0}
+    - _Size: {r: 1, g: 1.7, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
