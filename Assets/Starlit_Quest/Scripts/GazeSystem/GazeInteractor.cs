@@ -6,12 +6,10 @@ public class GazeInteractor : MonoBehaviour
     [SerializeField] private float maxDistance = 20f;
     [SerializeField] private float dwellTime = 2f;
     [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private Material highlightMaterial;
 
     private IGazeProvider gazeProvider;
     private GameObject currentTarget;
     private float gazeTimer;
-    private Material originalMaterial;
 
     void Awake()
     {
@@ -34,13 +32,6 @@ public class GazeInteractor : MonoBehaviour
                 currentTarget = target;
                 gazeTimer = 0f;
 
-                var renderer = target.GetComponent<Renderer>();
-                if (renderer)
-                {
-                    originalMaterial = renderer.material;
-                    renderer.material = highlightMaterial;
-                }
-
                 target.GetComponent<IGazeResponder>()?.OnGazeEnter();
             }
 
@@ -61,15 +52,11 @@ public class GazeInteractor : MonoBehaviour
     {
         if (currentTarget)
         {
-            var renderer = currentTarget.GetComponent<Renderer>();
-            if (renderer && originalMaterial)
-                renderer.material = originalMaterial;
-
             currentTarget.GetComponent<IGazeResponder>()?.OnGazeExit();
         }
 
         currentTarget = null;
         gazeTimer = 0f;
-        originalMaterial = null;
     }
 }
+
