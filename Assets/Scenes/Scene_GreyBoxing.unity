@@ -303,9 +303,9 @@ MonoBehaviour:
   cometPrefab: {fileID: 3864979539642822332, guid: 84ddc1daa2872464fadd9a5d789007f4, type: 3}
   spawnInterval: 5
   cometSpeed: 5
-  cometLifetime: 1
-  spawnRadius: 6.3
-  spawnHeight: 10
+  cometLifetime: 2
+  spawnRadius: 15
+  spawnHeight: 15
 --- !u!4 &749408967
 Transform:
   m_ObjectHideFlags: 0
