@@ -2,51 +2,56 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-public class TargetStar : MonoBehaviour, IGazeResponder
+public class TargetStar : MonoBehaviour
 {
-    public float gazeSelectionDurationThreshold = 1f;
+    public float gazeSelectionDurationThreshold = 2f;
     
     [Header("Materials")]
     [SerializeField] private Material gazeDefaultMaterial;
     [SerializeField] private Material gazeOngoingMaterial;
     [SerializeField] private Material gazeCompleteMaterial;
     
-    private Material thisMaterial;
+    private Renderer objectRenderer;
     private bool isGazing = false;
-    private float elpasedGazeDuration = 0f;
+    private float elapsedGazeDuration = 0f;
+
     
     public void OnGazeEnter()
     {
         isGazing = true;
-        thisMaterial = gazeOngoingMaterial;
+        objectRenderer.material = gazeOngoingMaterial;
+        Debug.Log("OnGazeEnter");
     }
 
     public void OnGazeExit()
     {
         GazeSelectionFailed();
-        thisMaterial = gazeDefaultMaterial;
+        objectRenderer.material = gazeDefaultMaterial;
+        Debug.Log("OnGazeExit");
     }
 
     public void OnGazeSelect()
     {
-        thisMaterial = gazeCompleteMaterial;
+        objectRenderer.material = gazeCompleteMaterial;
         // the star moves to the glass jar
+        Debug.Log("OnGazeSelect");
     }
     
     private void Start()
     {
-        thisMaterial = GetComponent<Renderer>().material;
-        thisMaterial = gazeDefaultMaterial;
+        objectRenderer = GetComponent<Renderer>();
+        objectRenderer.material = gazeDefaultMaterial;
     }
 
     private void Update()
     {
         if (isGazing)
         {
-            elpasedGazeDuration += Time.deltaTime;
-            if (elpasedGazeDuration >= gazeSelectionDurationThreshold)
+            elapsedGazeDuration += Time.deltaTime;
+            if (elapsedGazeDuration >= gazeSelectionDurationThreshold)
             {
                 OnGazeSelect();
+                GazeSelectionFailed(); 
             }
         }
     }
@@ -54,6 +59,6 @@ public class TargetStar : MonoBehaviour, IGazeResponder
     private void GazeSelectionFailed()
     {
         isGazing = false;
-        elpasedGazeDuration = 0f;
+        elapsedGazeDuration = 0f;
     }
 }

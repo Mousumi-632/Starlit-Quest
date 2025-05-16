@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 152c08e2b3671604a8a879012024daf8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cometPrefab: {fileID: 3864979539642822332, guid: 84ddc1daa2872464fadd9a5d789007f4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
