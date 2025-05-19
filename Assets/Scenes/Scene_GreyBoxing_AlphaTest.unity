@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a592072816d72c94fbd58cb8e5925f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starPrefab: {fileID: 8265212165840193274, guid: 516b99f9884062d4a827cf9c15b34237, type: 3}
+  starPrefab: {fileID: 5622443980696307077, guid: b3f0117b4b485314f88acf02e7168eb6, type: 3}
   cloudTransform: {fileID: 1985136828}
   behindDistance: 15
   starHeight: 10.79
@@ -891,7 +891,7 @@ Transform:
   m_GameObject: {fileID: 1732581457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.75, y: 10.68, z: 0}
+  m_LocalPosition: {x: 20.75, y: 10.68, z: -23.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
