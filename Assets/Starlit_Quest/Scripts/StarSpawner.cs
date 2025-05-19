@@ -3,24 +3,38 @@
 public class StarSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject starPrefab;
-    [SerializeField] private Transform cloudTransform;
-    [SerializeField] private float behindDistance = 1f;
+    [SerializeField] private float spawnDistance = 5f;
     [SerializeField] private float starHeight = 5f;
+
+    private GameObject spawnedStar;
 
     void Start()
     {
-        SpawnStarBehindCloud();
+        SpawnOrMoveStar();
     }
 
-    void SpawnStarBehindCloud()
+    void SpawnOrMoveStar()
     {
-        // 🧠 Use the opposite of cloud's forward direction to find "behind"
-        Vector3 spawnPosition = cloudTransform.position - cloudTransform.forward * behindDistance;
+        // Generate random direction on the XZ plane
+        Vector2 randomDirection2D = Random.insideUnitCircle.normalized;
+        Vector3 randomDirection3D = new Vector3(randomDirection2D.x, 0f, randomDirection2D.y);
 
-        // Match the height to the cloud
+        // Final spawn position at a distance and height
+        Vector3 spawnPosition = transform.position + randomDirection3D * spawnDistance;
         spawnPosition.y = starHeight;
 
-        // Spawn the star at the calculated position
-        Instantiate(starPrefab, spawnPosition, Quaternion.identity);
+        if (spawnedStar == null)
+        {
+            // Instantiate only once
+            spawnedStar = Instantiate(starPrefab, spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            // Just move the existing one
+            spawnedStar.transform.position = spawnPosition;
+        }
+
+        // Optional: Make the star face the spawner (or camera/player)
+        spawnedStar.transform.LookAt(transform);
     }
 }
