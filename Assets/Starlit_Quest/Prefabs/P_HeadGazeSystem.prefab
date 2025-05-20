@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8334179376789798802}
   - component: {fileID: 3327463649341822759}
   m_Layer: 0
-  m_Name: HeadGazeSystem
+  m_Name: P_HeadGazeSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
