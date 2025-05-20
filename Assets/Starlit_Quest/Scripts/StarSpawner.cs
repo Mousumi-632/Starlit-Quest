@@ -3,38 +3,38 @@
 public class StarSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject starPrefab;
-    [SerializeField] private float spawnDistance = 5f;
-    [SerializeField] private float starHeight = 5f;
+    [SerializeField] private Transform centerPoint; 
+    [SerializeField] private float spawnRadius = 5f;
+    [SerializeField] private float spawnHeight = 5f;
 
-    private GameObject spawnedStar;
-
-    void Start()
+    private void Start()
     {
-        SpawnOrMoveStar();
+        StarCounter.Instance.OnStarsChanged += HandleStarCollected;
+        SpawnStar();
     }
 
-    void SpawnOrMoveStar()
+    private void OnDestroy()
     {
-        // Generate random direction on the XZ plane
-        Vector2 randomDirection2D = Random.insideUnitCircle.normalized;
-        Vector3 randomDirection3D = new Vector3(randomDirection2D.x, 0f, randomDirection2D.y);
+        if (StarCounter.Instance != null)
+            StarCounter.Instance.OnStarsChanged -= HandleStarCollected;
+    }
 
-        // Final spawn position at a distance and height
-        Vector3 spawnPosition = transform.position + randomDirection3D * spawnDistance;
-        spawnPosition.y = starHeight;
+    private void HandleStarCollected(int count)
+    {
+        SpawnStar();
+    }
 
-        if (spawnedStar == null)
-        {
-            // Instantiate only once
-            spawnedStar = Instantiate(starPrefab, spawnPosition, Quaternion.identity);
-        }
-        else
-        {
-            // Just move the existing one
-            spawnedStar.transform.position = spawnPosition;
-        }
+    private void SpawnStar()
+    {
+        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        Vector3 offsetXZ = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * spawnRadius;
+        Vector3 spawnPosition = centerPoint.position + offsetXZ + Vector3.up * spawnHeight;
 
-        // Optional: Make the star face the spawner (or camera/player)
-        spawnedStar.transform.LookAt(transform);
+        GameObject star = Instantiate(starPrefab, spawnPosition, Quaternion.identity);
+
+        
+        Vector3 directionToCenter = (centerPoint.position - spawnPosition).normalized;
+        star.transform.up = directionToCenter;
     }
 }
+
