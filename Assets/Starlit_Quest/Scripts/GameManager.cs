@@ -2,27 +2,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject cloudPrefab;
-    [SerializeField] private GameObject cometSpawnerPrefab;
-    [SerializeField] private GameObject starSpawnerPrefab;
+    [SerializeField] private GameObject cloudObject;           
+    [SerializeField] private GameObject cometSpawnerObject;   
+    [SerializeField] private GameObject starSpawnerObject;    
 
     private void Start()
     {
-        Instantiate(starSpawnerPrefab);
+        if (starSpawnerObject != null)
+            starSpawnerObject.SetActive(true);
+
         StarCounter.Instance.OnStarsChanged += OnStarCollected;
+
     }
 
     private void OnStarCollected(int count)
     {
         if (count == 1)
         {
-            Instantiate(cloudPrefab);
-            Instantiate(starSpawnerPrefab);
+            if (cloudObject != null)
+                cloudObject.SetActive(true);
         }
         else if (count == 2)
         {
-            Instantiate(cometSpawnerPrefab);
-            Instantiate(starSpawnerPrefab);
+            if (cometSpawnerObject != null)
+                cometSpawnerObject.SetActive(true);
         }
         else if (count == 3)
         {
@@ -35,4 +38,5 @@ public class GameManager : MonoBehaviour
         // Game finished logic here
     }
 }
+
 

@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class StarResponder : MonoBehaviour, IGazeResponder
 {
-    [SerializeField] private Transform moveTarget;
+    [SerializeField] private Vector3 moveTargetPosition = new Vector3(-1.03f, 1.74f, 0.617f);
     [SerializeField] private float moveDuration = 1f;
 
     [Header("Materials")]
@@ -62,10 +62,9 @@ public class StarResponder : MonoBehaviour, IGazeResponder
             Debug.LogWarning("Renderer or Gaze Complete Material missing on " + name);
         }
 
-        if (moveTarget != null)
-        {
-            transform.DOMove(moveTarget.position, moveDuration).SetEase(Ease.InOutSine);
-        }
+        
+        transform.DOMove(moveTargetPosition, moveDuration).SetEase(Ease.InOutSine);
+        
     }
 }
 
