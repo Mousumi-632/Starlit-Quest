@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTargetTransform: {fileID: 1102466871362785115, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
-  moveDuration: 15
+  moveDuration: 5
   gazeDefaultMaterial: {fileID: 2100000, guid: bd75d6f517d144b5ba352ec05a203c79, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: 1b263f006976045c79932ef08a4c7d75, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}

@@ -21,6 +21,10 @@ public class GazeInteractor : MonoBehaviour
     void Update()
     {
         Ray ray = new Ray(gazeProvider.Origin, gazeProvider.Direction);
+
+        
+        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green); // This is just for debugging
+
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, targetLayer))
         {
             var target = hit.collider.gameObject;
@@ -39,7 +43,7 @@ public class GazeInteractor : MonoBehaviour
             if (gazeTimer >= dwellTime)
             {
                 currentTarget.GetComponent<IGazeResponder>()?.OnGazeSelect();
-                ClearCurrentTarget(); // Reset after selection
+                ClearCurrentTarget(); 
             }
         }
         else

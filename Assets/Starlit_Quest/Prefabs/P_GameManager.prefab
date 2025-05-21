@@ -49,3 +49,4 @@ MonoBehaviour:
   starSpawnerPrefab: {fileID: 493346528005152076, guid: 16164e09905e91b43b59a2aeb313fd9e, type: 3}
   XROriginPrefab: {fileID: 3515634032813213605, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
   starCounterPrefab: {fileID: 811157942910791644, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
+  npcPrefab: {fileID: 8230742851374760342, guid: 27052979a47c2a24793b0413d0df641e, type: 3}
