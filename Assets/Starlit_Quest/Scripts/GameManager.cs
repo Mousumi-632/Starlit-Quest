@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject starSpawnerPrefab;
     [SerializeField] private GameObject XROriginPrefab;
     [SerializeField] private GameObject starCounterPrefab;
+    [SerializeField] private GameObject npcPrefab;
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
             Instantiate(starCounterPrefab);
         if (starSpawnerPrefab != null)
             Instantiate(starSpawnerPrefab);
+        if (npcPrefab != null)
+            Instantiate(npcPrefab);
 
         StarCounter.Instance.OnStarsChanged += OnStarCollected;
     }
