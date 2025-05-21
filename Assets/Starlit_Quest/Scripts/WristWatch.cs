@@ -18,13 +18,19 @@ public class WristWatch : MonoBehaviour
 
     private void UpdateWatchStarDisplay(int countCollectedStars)
     {
-        targetStarImage.texture = targetStars[countCollectedStars];
+        if (countCollectedStars < targetStars.Count)
+        {
+            targetStarImage.texture = null;
+            targetStarImage.texture = targetStars[countCollectedStars];
+        }
+        else
+        {
+            DisplayTaskCompletion();
+        }
+    }
+
+    private void DisplayTaskCompletion()
+    {
+        Debug.Log("Task completed!");
     }
 }
-
-
-// TODOs
-//     call StarCounter AddStar()
-//     verify raw image texture switch
-//     add Game Manager game object, verify the rest
-//     
