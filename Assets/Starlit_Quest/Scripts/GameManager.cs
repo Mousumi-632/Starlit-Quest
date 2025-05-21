@@ -2,20 +2,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [SerializeField] private GameObject cloudPrefab;
     [SerializeField] private GameObject cometSpawnerPrefab;
     [SerializeField] private GameObject starSpawnerPrefab;
     [SerializeField] private GameObject XROriginPrefab;
     [SerializeField] private GameObject starCounterPrefab;
     [SerializeField] private GameObject npcPrefab;
+    [SerializeField] private GameObject uiPrefab;
 
     private void Awake()
     {
+        // Singleton enforcement
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); 
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
-        Instantiate(XROriginPrefab);   
+
+        if (XROriginPrefab != null)
+        {
+            Instantiate(XROriginPrefab);
+        }
     }
 
-        private void Start()
+    private void Start()
     {
         if (starCounterPrefab != null)
             Instantiate(starCounterPrefab);
@@ -24,7 +39,11 @@ public class GameManager : MonoBehaviour
         if (npcPrefab != null)
             Instantiate(npcPrefab);
 
-        StarCounter.Instance.OnStarsChanged += OnStarCollected;
+       
+        if (StarCounter.Instance != null)
+        {
+            StarCounter.Instance.OnStarsChanged += OnStarCollected;
+        }
     }
 
     private void OnStarCollected(int count)
