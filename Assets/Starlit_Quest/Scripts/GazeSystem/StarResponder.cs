@@ -6,7 +6,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     [SerializeField] private Transform moveTarget;
     [SerializeField] private float moveDuration = 1f;
 
-    [Header("Materials")]
+    [Header("Gaze Feedback")]
     [SerializeField] private Material gazeDefaultMaterial;
     [SerializeField] private Material gazeOngoingMaterial;
     [SerializeField] private Material gazeCompleteMaterial;
