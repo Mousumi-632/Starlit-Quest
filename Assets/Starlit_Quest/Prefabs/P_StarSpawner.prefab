@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7592019554604400139
 Transform:
   m_ObjectHideFlags: 0
@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starPrefab: {fileID: 5622443980696307077, guid: b3f0117b4b485314f88acf02e7168eb6, type: 3}
-  spawnDistance: 10
-  starHeight: 10.79
+  centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
+  spawnRadius: 5
+  spawnHeight: 5
