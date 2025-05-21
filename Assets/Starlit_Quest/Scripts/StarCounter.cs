@@ -17,6 +17,7 @@ public class StarCounter : MonoBehaviour, IStarCounter
     public void AddStar()
     {
         StarsCollected++;
+        Debug.Log($"[StarCounter] Stars Collected: {StarsCollected}");
         OnStarsChanged?.Invoke(StarsCollected);
     }
 }

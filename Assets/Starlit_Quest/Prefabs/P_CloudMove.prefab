@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 20
   duration: 40
-  centerPoint: {fileID: 0}
+  centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
   height: 10.79
 --- !u!1 &2865047627610831673
 GameObject:
@@ -237,5 +237,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 10
   duration: 30
-  centerPoint: {fileID: 0}
+  centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
   height: 10.79

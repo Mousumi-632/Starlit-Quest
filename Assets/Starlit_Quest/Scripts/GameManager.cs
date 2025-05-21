@@ -2,27 +2,61 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [SerializeField] private GameObject cloudPrefab;
     [SerializeField] private GameObject cometSpawnerPrefab;
     [SerializeField] private GameObject starSpawnerPrefab;
+    [SerializeField] private GameObject XROriginPrefab;
+    [SerializeField] private GameObject starCounterPrefab;
+    [SerializeField] private GameObject npcPrefab;
+    [SerializeField] private GameObject uiPrefab;
+
+    private void Awake()
+    {
+      
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); 
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        if (XROriginPrefab != null)
+        {
+            Instantiate(XROriginPrefab);
+        }
+    }
 
     private void Start()
     {
-        Instantiate(starSpawnerPrefab);
-        StarCounter.Instance.OnStarsChanged += OnStarCollected;
+        if (starCounterPrefab != null)
+            Instantiate(starCounterPrefab);
+        if (starSpawnerPrefab != null)
+            Instantiate(starSpawnerPrefab);
+        if (npcPrefab != null)
+            Instantiate(npcPrefab);
+
+       
+        if (StarCounter.Instance != null)
+        {
+            StarCounter.Instance.OnStarsChanged += OnStarCollected;
+        }
     }
 
     private void OnStarCollected(int count)
     {
         if (count == 1)
         {
-            Instantiate(cloudPrefab);
-            Instantiate(starSpawnerPrefab);
+            if (cloudPrefab != null)
+                Instantiate(cloudPrefab);
         }
         else if (count == 2)
         {
-            Instantiate(cometSpawnerPrefab);
-            Instantiate(starSpawnerPrefab);
+            if (cometSpawnerPrefab != null)
+                Instantiate(cometSpawnerPrefab);
         }
         else if (count == 3)
         {
@@ -35,4 +69,5 @@ public class GameManager : MonoBehaviour
         // Game finished logic here
     }
 }
+
 

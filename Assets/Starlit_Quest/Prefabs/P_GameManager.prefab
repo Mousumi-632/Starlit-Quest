@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3632256572096100475}
+  - component: {fileID: 4935518445538415841}
   m_Layer: 0
   m_Name: P_GameManager
   m_TagString: Untagged
@@ -31,3 +32,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4935518445538415841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996484077155173915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfa93f0370fe1c46b1f468877bc0bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudPrefab: {fileID: 2865047627610831673, guid: 614ffc59c8a55c94cab96384bf3dbae6, type: 3}
+  cometSpawnerPrefab: {fileID: 8086501445734864224, guid: 83ad51f19096ddc41b7e625d4c026334, type: 3}
+  starSpawnerPrefab: {fileID: 493346528005152076, guid: 16164e09905e91b43b59a2aeb313fd9e, type: 3}
+  XROriginPrefab: {fileID: 3515634032813213605, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
+  starCounterPrefab: {fileID: 811157942910791644, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
+  npcPrefab: {fileID: 8230742851374760342, guid: 27052979a47c2a24793b0413d0df641e, type: 3}

@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class StarResponder : MonoBehaviour, IGazeResponder
 {
-    [SerializeField] private Transform moveTarget;
+    [SerializeField] private Transform moveTargetTransform;  
     [SerializeField] private float moveDuration = 1f;
 
     [Header("Gaze Feedback")]
@@ -50,7 +50,6 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         if (hasBeenSelected) return;
 
         hasBeenSelected = true;
-
         Debug.Log("Star selected: " + name);
 
         if (objectRenderer != null && gazeCompleteMaterial != null)
@@ -62,9 +61,13 @@ public class StarResponder : MonoBehaviour, IGazeResponder
             Debug.LogWarning("Renderer or Gaze Complete Material missing on " + name);
         }
 
-        if (moveTarget != null)
+        if (moveTargetTransform != null)
         {
-            transform.DOMove(moveTarget.position, moveDuration).SetEase(Ease.InOutSine);
+            transform.DOMove(moveTargetTransform.position, moveDuration).SetEase(Ease.InOutSine);
+        }
+        else
+        {
+            Debug.LogWarning("Move Target Transform not assigned for: " + name);
         }
     }
 }
