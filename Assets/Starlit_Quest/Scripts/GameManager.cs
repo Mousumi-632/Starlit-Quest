@@ -30,17 +30,11 @@ public class GameManager : MonoBehaviour
         {
             if (cloudPrefab != null)
                 Instantiate(cloudPrefab);
-
-            if (starSpawnerPrefab != null)
-                Instantiate(starSpawnerPrefab);
         }
         else if (count == 2)
         {
             if (cometSpawnerPrefab != null)
                 Instantiate(cometSpawnerPrefab);
-
-            if (starSpawnerPrefab != null)
-                Instantiate(starSpawnerPrefab);
         }
         else if (count == 3)
         {

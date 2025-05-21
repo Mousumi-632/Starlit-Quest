@@ -7,6 +7,18 @@ public class JarContainer : MonoBehaviour
         if (other.CompareTag("Star"))
         {
             StarCounter.Instance.AddStar();
+
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                Destroy(rb);
+            }
+
+            Collider starCollider = other.GetComponent<Collider>();
+            if (starCollider != null)
+            {
+                starCollider.enabled = false;
+            }
         }
     }
 }

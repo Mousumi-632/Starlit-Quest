@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f46605f991fd24eb15c55e345780d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTargetPosition: {x: -1.03, y: 1.74, z: 0.617}
+  moveTargetTransform: {fileID: 1102466871362785115, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
   moveDuration: 15
   gazeDefaultMaterial: {fileID: 2100000, guid: bd75d6f517d144b5ba352ec05a203c79, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: 1b263f006976045c79932ef08a4c7d75, type: 2}
