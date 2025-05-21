@@ -1,13 +1,22 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DotProgressBar : MonoBehaviour
 {
-    private GameObject dotPrefab;
+    [SerializeField] private GameObject dotPrefab;
 
-    private void Start()
+    private int totalCountTargetStars;
+    private List<Dot> dots;
+
+    public void Initialize(int totalCount)
     {
-        throw new NotImplementedException();
+        totalCountTargetStars = totalCount;
+
+        for (int i = 0; i < totalCountTargetStars; i++)
+        {
+            Instantiate(dotPrefab, transform, false);
+        }
     }
 
     public void UpdateDisplay(int countCollectedStars)

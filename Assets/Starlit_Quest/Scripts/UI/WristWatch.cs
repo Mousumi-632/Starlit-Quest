@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class WristWatch : MonoBehaviour
 {
-    [Header("Target Stars")] [SerializeField]
-    private RawImage targetStarImage;
-    private List<Texture> targetStars;
+    [Header("Target Stars")] 
+    [SerializeField] private RawImage targetStarImage;
+    [SerializeField] private List<Texture> targetStars;
 
     [Header("Progress Bar")]
-    private DotProgressBar dotProgressBar;
+    [SerializeField] private DotProgressBar dotProgressBar;
+
+    private int totalCountTargetStars = 3;
 
     private void Start()
     {
+        dotProgressBar.Initialize(totalCountTargetStars);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
     }
 
@@ -41,3 +44,6 @@ public class WristWatch : MonoBehaviour
         Debug.Log("Task completed!");
     }
 }
+
+// TODOs:
+//     get total count target stars from star counter or game manager
