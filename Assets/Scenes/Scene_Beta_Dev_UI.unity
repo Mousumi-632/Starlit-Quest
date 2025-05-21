@@ -232,6 +232,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Wrist_Watch
       objectReference: {fileID: 0}
+    - target: {fileID: 6358289262098717876, guid: 5dea97397b69841789aab89d95ee435e, type: 3}
+      propertyPath: targetStars.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358289262098717876, guid: 5dea97397b69841789aab89d95ee435e, type: 3}
+      propertyPath: 'targetStars.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2800000, guid: d149aa6673c314fa584d0e9311b47ffa, type: 3}
+    - target: {fileID: 6358289262098717876, guid: 5dea97397b69841789aab89d95ee435e, type: 3}
+      propertyPath: 'targetStars.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: da4e9c9176e534d4993b9d588b78e642, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1943,6 +1955,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 1324587323}
   - {fileID: 6146115973530866040}
+  - {fileID: 1931215183}
   - {fileID: 1671110633}
   - {fileID: 1448291164}
   - {fileID: 543805503}
@@ -1957,4 +1970,3 @@ SceneRoots:
   - {fileID: 988125215}
   - {fileID: 752150788}
   - {fileID: 417497069}
-  - {fileID: 1931215183}
