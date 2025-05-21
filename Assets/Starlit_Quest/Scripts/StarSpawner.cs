@@ -3,7 +3,7 @@
 public class StarSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject starPrefab;
-    [SerializeField] private Transform centerPoint; 
+    [SerializeField] private Transform centerPoint;
     [SerializeField] private float spawnRadius = 5f;
     [SerializeField] private float spawnHeight = 5f;
 
@@ -21,20 +21,20 @@ public class StarSpawner : MonoBehaviour
 
     private void HandleStarCollected(int count)
     {
-        SpawnStar();
+        if (count < 3)
+            SpawnStar();
     }
 
     private void SpawnStar()
     {
-        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        Vector3 offsetXZ = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * spawnRadius;
+        float angle = Random.Range(-90f, 90f) * Mathf.Deg2Rad;
+        Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * spawnRadius;
         Vector3 spawnPosition = centerPoint.position + offsetXZ + Vector3.up * spawnHeight;
 
         GameObject star = Instantiate(starPrefab, spawnPosition, Quaternion.identity);
-
-        
         Vector3 directionToCenter = (centerPoint.position - spawnPosition).normalized;
         star.transform.up = directionToCenter;
     }
 }
+
 
