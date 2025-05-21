@@ -11,12 +11,10 @@ public class WristWatch : MonoBehaviour
 
     [Header("Progress Bar")]
     [SerializeField] private DotProgressBar dotProgressBar;
-
-    private int totalCountTargetStars = 3;
-
+    
     private void Start()
     {
-        dotProgressBar.Initialize(totalCountTargetStars);
+        dotProgressBar.Initialize(targetStars.Count);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
     }
 
