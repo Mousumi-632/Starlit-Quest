@@ -103,7 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTargetTransform: {fileID: 1102466871362785115, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
   moveDuration: 5
-  objectRenderer: {fileID: 0}
   gazeDefaultMaterial: {fileID: 2100000, guid: e3ab2dd5f40eb495eb266bc8e0b7c484, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
@@ -126,8 +125,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0.028734654}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &601387884746528816
 Rigidbody:
   m_ObjectHideFlags: 0

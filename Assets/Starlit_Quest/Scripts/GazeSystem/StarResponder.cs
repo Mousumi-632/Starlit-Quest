@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using DG.Tweening;
 
 public class StarResponder : MonoBehaviour, IGazeResponder
@@ -17,55 +18,47 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     void Awake()
     {
         objectRenderer = GetComponent<Renderer>();
-        if (objectRenderer != null && gazeDefaultMaterial != null)
+        
+        if (objectRenderer == null || gazeDefaultMaterial == null || gazeOngoingMaterial == null ||
+            gazeCompleteMaterial == null || moveTargetTransform == null)
         {
-            objectRenderer.material = gazeDefaultMaterial;
+            Debug.LogError("Missing required serialize fields for game object " + gameObject.name);
+            Destroy(gameObject);
+            // TODO: assign default values to fields instead
         }
+        
+        objectRenderer.material = gazeDefaultMaterial;
     }
 
     public void OnGazeEnter()
     {
         if (hasBeenSelected) return;
         
-        if (objectRenderer != null && gazeOngoingMaterial != null)
-        {
-            objectRenderer.material = gazeOngoingMaterial;
-        }
+        objectRenderer.material = gazeOngoingMaterial;
     }
 
     public void OnGazeExit()
     {
         if (hasBeenSelected) return;
-
-        if (objectRenderer != null && gazeDefaultMaterial != null)
-        {
-            objectRenderer.material = gazeDefaultMaterial;
-        }
+        
+        objectRenderer.material = gazeDefaultMaterial;
     }
 
     public void OnGazeSelect()
     {
         if (hasBeenSelected) return;
-
+        
         hasBeenSelected = true;
 
-        if (objectRenderer != null && gazeCompleteMaterial != null)
-        {
-            objectRenderer.material = gazeCompleteMaterial;
-        }
-        else
-        {
-            Debug.LogWarning("Renderer or Gaze Complete Material missing on " + name);
-        }
+        StartCoroutine(AsyncGazeSelection());
 
-        if (moveTargetTransform != null)
-        {
-            transform.DOMove(moveTargetTransform.position, moveDuration).SetEase(Ease.InOutSine);
-        }
-        else
-        {
-            Debug.LogWarning("Move Target Transform not assigned for: " + name);
-        }
+    }
+
+    private IEnumerator AsyncGazeSelection()
+    {
+        objectRenderer.material = gazeCompleteMaterial;
+        yield return transform.DOShakePosition(1f, 0.1f, 15).WaitForCompletion();
+        yield return transform.DOMove(moveTargetTransform.position, moveDuration).SetEase(Ease.InOutSine).WaitForCompletion();
     }
 }
 
