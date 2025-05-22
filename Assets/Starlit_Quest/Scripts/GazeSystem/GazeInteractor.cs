@@ -4,7 +4,7 @@ using UnityEngine;
 public class GazeInteractor : MonoBehaviour
 {
     [SerializeField] private float maxDistance = 20f;
-    [SerializeField] private float dwellTime = 2f;
+    [SerializeField] private float dwellTime = 3f;
     [SerializeField] private LayerMask targetLayer;
 
     private IGazeProvider gazeProvider;
