@@ -14,7 +14,7 @@ public class WristWatch : MonoBehaviour
     
     private void Start()
     {
-        dotProgressBar.Initialize(targetStars.Count);
+        dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
     }
 
@@ -42,6 +42,3 @@ public class WristWatch : MonoBehaviour
         Debug.Log("Task completed!");
     }
 }
-
-// TODOs:
-//     get total count target stars from star counter or game manager
