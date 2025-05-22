@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,19 +13,21 @@ public class WristWatch : MonoBehaviour
 
     [Header("Progress Bar")]
     [SerializeField] private DotProgressBar dotProgressBar;
+
+    private int countCollectedStars = 0;
     
     private void Start()
     {
-        dotProgressBar.Initialize(targetStars.Count);
+        dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
     }
 
-    private void UpdateWatchUI(int countCollectedStars)
+    private void UpdateWatchUI(int count)
     {
+        countCollectedStars = count;
         if (countCollectedStars < targetStars.Count)
         {
-            UpdateTargetStarDisplay(countCollectedStars);
-            dotProgressBar.UpdateDisplay(countCollectedStars);
+            StartCoroutine(AsyncUpdateWatchUI());
         }
         else
         {
@@ -31,7 +35,16 @@ public class WristWatch : MonoBehaviour
         }
     }
 
-    private void UpdateTargetStarDisplay(int countCollectedStars)
+    private IEnumerator AsyncUpdateWatchUI()
+    {
+        yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        UpdateTargetStarDisplay();
+        yield return targetStarImage.transform.DOScale(1f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        
+        dotProgressBar.UpdateDisplay(countCollectedStars);
+    }
+
+    private void UpdateTargetStarDisplay()
     {
         targetStarImage.texture = null;
         targetStarImage.texture = targetStars[countCollectedStars];
@@ -43,5 +56,5 @@ public class WristWatch : MonoBehaviour
     }
 }
 
-// TODOs:
-//     get total count target stars from star counter or game manager
+// TODOs
+//     flesh out complete task step
