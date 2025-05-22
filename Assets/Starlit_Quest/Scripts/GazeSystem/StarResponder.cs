@@ -7,16 +7,17 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     [SerializeField] private float moveDuration = 1f;
 
     [Header("Gaze Feedback")]
+    [SerializeField] private Renderer objectRenderer;
     [SerializeField] private Material gazeDefaultMaterial;
     [SerializeField] private Material gazeOngoingMaterial;
     [SerializeField] private Material gazeCompleteMaterial;
 
-    private Renderer objectRenderer;
+    // private Renderer objectRenderer;
     private bool hasBeenSelected = false;
 
     void Awake()
     {
-        objectRenderer = GetComponent<Renderer>();
+        // objectRenderer = GetComponent<Renderer>();
         if (objectRenderer != null && gazeDefaultMaterial != null)
         {
             objectRenderer.material = gazeDefaultMaterial;

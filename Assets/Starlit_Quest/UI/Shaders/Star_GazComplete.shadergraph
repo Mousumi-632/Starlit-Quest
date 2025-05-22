@@ -326,7 +326,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":-521048584939032456,\"guid\":\"1428cf0d2512541e3b1bb4000a20827d\",\"type\":3}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -628,7 +628,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 2.0,
+    "m_Value": 12.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -740,10 +740,10 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 1.0,
-        "g": 0.6517962217330933,
+        "r": 0.7490196824073792,
+        "g": 0.518899142742157,
         "b": 0.0,
-        "a": 0.0
+        "a": 1.0
     },
     "isMainColor": false,
     "m_ColorMode": 1
@@ -1539,7 +1539,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 5.0,
+    "m_Value": 15.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1591,7 +1591,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 1.0,
+    "m_Value": 5.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1857,10 +1857,10 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 3.8867924213409426,
-        "g": 0.8699918985366821,
-        "b": 0.16500526666641236,
-        "a": 0.0
+        "r": 0.0,
+        "g": 5.647058486938477,
+        "b": 23.9686279296875,
+        "a": 1.0
     },
     "isMainColor": false,
     "m_ColorMode": 1
