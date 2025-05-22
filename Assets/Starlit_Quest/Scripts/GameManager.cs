@@ -37,18 +37,15 @@ public class GameManager : MonoBehaviour
 
     private void OnStarCollected(int count)
     {
-        switch (count)
-        {
-            case 1:
-                InstantiateIfNotNull(cloudPrefab);
-                break;
-            case 2:
-                InstantiateIfNotNull(cometSpawnerPrefab);
-                break;
-            case 3:
-                HandleGameFinished();
-                break;
-        }
+        
+        if (count == 1)
+            InstantiateIfNotNull(cloudPrefab);
+        else if (count == 2)
+            InstantiateIfNotNull(cometSpawnerPrefab);
+
+        
+        if (StarCounter.Instance != null && count >= StarCounter.Instance.MaxStars)
+            HandleGameFinished();
     }
 
     private void InstantiateIfNotNull(GameObject prefab)
@@ -60,7 +57,7 @@ public class GameManager : MonoBehaviour
     private void HandleGameFinished()
     {
         // Game finished logic here
+        
     }
 }
-
 
