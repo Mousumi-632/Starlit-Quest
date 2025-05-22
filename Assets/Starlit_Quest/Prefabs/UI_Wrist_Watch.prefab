@@ -153,6 +153,7 @@ MonoBehaviour:
   targetStars:
   - {fileID: 2800000, guid: d149aa6673c314fa584d0e9311b47ffa, type: 3}
   - {fileID: 2800000, guid: da4e9c9176e534d4993b9d588b78e642, type: 3}
+  - {fileID: 2800000, guid: 5cec2a436fc564298b15e4d555c241bb, type: 3}
   dotProgressBar: {fileID: 8254450329022915410}
 --- !u!1 &4543986775816285964
 GameObject:
