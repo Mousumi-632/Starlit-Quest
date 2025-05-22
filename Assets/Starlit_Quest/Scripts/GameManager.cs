@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject XROriginPrefab;
     [SerializeField] private GameObject starCounterPrefab;
     [SerializeField] private GameObject npcPrefab;
-    [SerializeField] private GameObject uiPrefab;
+   
 
     private void Awake()
     {
