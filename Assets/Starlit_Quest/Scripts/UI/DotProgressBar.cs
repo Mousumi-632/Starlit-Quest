@@ -25,7 +25,6 @@ public class DotProgressBar : MonoBehaviour
 
     public void UpdateDisplay(int countCollectedStars)
     {
-        dots[countCollectedStars].Status = Dot.DotStatus.On;
-        Debug.Log("Progress Bar, update display, collected " + countCollectedStars + " stars");
+        dots[countCollectedStars].Status = Dot.DotStatus.On; 
     }
 }
