@@ -10,64 +10,54 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject XROriginPrefab;
     [SerializeField] private GameObject starCounterPrefab;
     [SerializeField] private GameObject npcPrefab;
-    [SerializeField] private GameObject uiPrefab;
 
     private void Awake()
     {
-      
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        if (XROriginPrefab != null)
-        {
-            Instantiate(XROriginPrefab);
-        }
+        InstantiateIfNotNull(XROriginPrefab);
     }
 
     private void Start()
     {
-        if (starCounterPrefab != null)
-            Instantiate(starCounterPrefab);
-        if (starSpawnerPrefab != null)
-            Instantiate(starSpawnerPrefab);
-        if (npcPrefab != null)
-            Instantiate(npcPrefab);
+        InstantiateIfNotNull(starCounterPrefab);
+        InstantiateIfNotNull(starSpawnerPrefab);
+        InstantiateIfNotNull(npcPrefab);
 
-       
         if (StarCounter.Instance != null)
-        {
             StarCounter.Instance.OnStarsChanged += OnStarCollected;
-        }
     }
 
     private void OnStarCollected(int count)
     {
+        
         if (count == 1)
-        {
-            if (cloudPrefab != null)
-                Instantiate(cloudPrefab);
-        }
+            InstantiateIfNotNull(cloudPrefab);
         else if (count == 2)
-        {
-            if (cometSpawnerPrefab != null)
-                Instantiate(cometSpawnerPrefab);
-        }
-        else if (count == 3)
-        {
+            InstantiateIfNotNull(cometSpawnerPrefab);
+
+        
+        if (StarCounter.Instance != null && count >= StarCounter.Instance.MaxStars)
             HandleGameFinished();
-        }
+    }
+
+    private void InstantiateIfNotNull(GameObject prefab)
+    {
+        if (prefab != null)
+            Instantiate(prefab);
     }
 
     private void HandleGameFinished()
     {
         // Game finished logic here
+        
     }
 }
-
 
