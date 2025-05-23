@@ -57,9 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6aa4a09da81dd49a54c0e930da463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 30
+  maxDistance: 40
   dwellTime: 2
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  highlightMaterial: {fileID: 2100000, guid: 5a8fc1df0dda1ca4396fd532d570dd85, type: 2}

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cometPrefab: {fileID: 3864979539642822332, guid: 84ddc1daa2872464fadd9a5d789007f4, type: 3}
-  spawnInterval: 5
+  spawnInterval: 3
   cometSpeed: 6
   cometLifetime: 2
   spawnRadius: 20

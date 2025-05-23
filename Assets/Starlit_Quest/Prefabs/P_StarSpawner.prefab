@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starPrefab: {fileID: 1264816656191845480, guid: 62f00b5388a5d4a5b9aac44b4db78a9a, type: 3}
   centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
-  spawnRadius: 5
-  spawnHeight: 5
+  spawnRadius: 35
+  spawnHeight: 20
