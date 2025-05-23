@@ -106,6 +106,8 @@ MonoBehaviour:
   gazeDefaultMaterial: {fileID: 2100000, guid: e3ab2dd5f40eb495eb266bc8e0b7c484, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
+  startScale: {x: 3, y: 3, z: 3}
+  endScale: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!135 &5545530839341430629
 SphereCollider:
   m_ObjectHideFlags: 0
