@@ -5,15 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Scene_GreyBoxing_AlphaTest.unity
-    guid: 46d6c96942aa2e84d83689afc0cc86ed
-  - enabled: 0
-    path: Assets/Scenes/Scene_Papercut.unity
-    guid: 5d956193cf2bb4745ba988199c3c5bea
   - enabled: 1
-    path: Assets/Scenes/Scene_GreyBoxing_AlphaTestEnvironment.unity
-    guid: b9e7549820cee564a88625b7f86f27f6
+    path: Assets/Scenes/Scene_Menu.unity
+    guid: 6453a0bd92fa911458710440302f465e
+  - enabled: 1
+    path: Assets/Scenes/Scene_Beta_Dev2.unity
+    guid: ccf5f66084bdb4745a41d6d1f73199fd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ab7069e43c01c1f4aabf6b904608b2f5, type: 2}

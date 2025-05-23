@@ -1707,6 +1707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_HeadGazeSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 3327463649341822759, guid: e09ea0fa74a3ee0449568fad1414de0d, type: 3}
+      propertyPath: dwellTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3661540455128941079, guid: e09ea0fa74a3ee0449568fad1414de0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.536016

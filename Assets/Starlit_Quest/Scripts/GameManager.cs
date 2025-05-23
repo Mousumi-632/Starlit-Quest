@@ -1,15 +1,16 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private GameObject cloudPrefab;
-    [SerializeField] private GameObject cometSpawnerPrefab;
-    [SerializeField] private GameObject starSpawnerPrefab;
-    [SerializeField] private GameObject XROriginPrefab;
-    [SerializeField] private GameObject starCounterPrefab;
-    [SerializeField] private GameObject npcPrefab;
+    [SerializeField]
+    private GameObject XROriginPrefab;
+
+    private bool inTransition = false;
 
     private void Awake()
     {
@@ -21,43 +22,46 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        InstantiateIfNotNull(XROriginPrefab);
+        Instantiate(XROriginPrefab, transform);
     }
 
-    private void Start()
+    public Coroutine GoToBootScene()
     {
-        InstantiateIfNotNull(starCounterPrefab);
-        InstantiateIfNotNull(starSpawnerPrefab);
-        InstantiateIfNotNull(npcPrefab);
-
-        if (StarCounter.Instance != null)
-            StarCounter.Instance.OnStarsChanged += OnStarCollected;
+        return StartCoroutine(LoadScene("BootScene", () =>
+        {
+            var sceneController = GameObject.FindAnyObjectByType<BootSceneController>();
+            sceneController.Initialize(this);
+        }));
     }
 
-    private void OnStarCollected(int count)
+    public Coroutine GoToMenuScene()
     {
-        
-        if (count == 1)
-            InstantiateIfNotNull(cloudPrefab);
-        else if (count == 2)
-            InstantiateIfNotNull(cometSpawnerPrefab);
-
-        
-        if (StarCounter.Instance != null && count >= StarCounter.Instance.MaxStars)
-            HandleGameFinished();
+        return StartCoroutine(LoadScene("MenuScene", () =>
+        {
+            var sceneController = GameObject.FindAnyObjectByType<MenuSceneController>();
+            sceneController.Initialize(this);
+        }));
     }
 
-    private void InstantiateIfNotNull(GameObject prefab)
+    public Coroutine GoToStarlitQuestScene()
     {
-        if (prefab != null)
-            Instantiate(prefab);
+        return StartCoroutine(LoadScene("Scene_Beta_Dev2", () =>
+        {
+            var sceneController = GameObject.FindAnyObjectByType<StarlitQuestSceneController>();
+            sceneController.Initialize(this);
+        }));
     }
 
-    private void HandleGameFinished()
+    private IEnumerator LoadScene(string sceneName, Action sceneLoadedCallback)
     {
-        // Game finished logic here
-        
+        if (inTransition)
+            yield break;
+
+        inTransition = true;
+
+        yield return SceneManager.LoadSceneAsync(sceneName);
+        sceneLoadedCallback?.Invoke();
+
+        inTransition = false;
     }
 }
-

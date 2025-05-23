@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a592072816d72c94fbd58cb8e5925f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starPrefab: {fileID: 5622443980696307077, guid: b3f0117b4b485314f88acf02e7168eb6, type: 3}
+  starPrefab: {fileID: 1264816656191845480, guid: 62f00b5388a5d4a5b9aac44b4db78a9a, type: 3}
   centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
   spawnRadius: 5
   spawnHeight: 5
