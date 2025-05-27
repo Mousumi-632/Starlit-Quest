@@ -40,6 +40,8 @@ public class NPC : MonoBehaviour
 
     private void UpdateText(int stars)
     {
+        SoundManager.Instance.PlayNPCDialogue(stars, StarCounter.Instance.MaxStars); 
+
         switch (stars)
         {
             case 0:

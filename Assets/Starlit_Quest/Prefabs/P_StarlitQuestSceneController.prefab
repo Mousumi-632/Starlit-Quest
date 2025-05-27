@@ -47,5 +47,6 @@ MonoBehaviour:
   starCounterPrefab: {fileID: 811157942910791644, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
   npcPrefab: {fileID: 8230742851374760342, guid: 27052979a47c2a24793b0413d0df641e, type: 3}
   starSpawnerPrefab: {fileID: 493346528005152076, guid: 16164e09905e91b43b59a2aeb313fd9e, type: 3}
+  soundManagerPrefab: {fileID: 8618123249337060600, guid: 0966011c1a1743b44b8e89a0866a5f10, type: 3}
   cloudPrefab: {fileID: 2865047627610831673, guid: 614ffc59c8a55c94cab96384bf3dbae6, type: 3}
   cometSpawnerPrefab: {fileID: 8086501445734864224, guid: 83ad51f19096ddc41b7e625d4c026334, type: 3}

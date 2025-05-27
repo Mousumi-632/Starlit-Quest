@@ -38,12 +38,14 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     {
         if (hasBeenSelected) return;
         objectRenderer.material = gazeOngoingMaterial;
+        SoundManager.Instance.PlayGazeEnter();
     }
 
     public void OnGazeExit()
     {
         if (hasBeenSelected) return;
         objectRenderer.material = gazeDefaultMaterial;
+        SoundManager.Instance.PlayGazeExit();
     }
 
     public void OnGazeSelect()
@@ -52,6 +54,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
 
         hasBeenSelected = true;
         StartCoroutine(AsyncGazeSelection());
+        SoundManager.Instance.PlayGazeSelect();
     }
 
     private IEnumerator AsyncGazeSelection()

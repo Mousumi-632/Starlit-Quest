@@ -27,5 +27,6 @@ public class StarCounter : MonoBehaviour, IStarCounter
         StarsCollected++;
         Debug.Log($"[StarCounter] Stars Collected: {StarsCollected}");
         OnStarsChanged?.Invoke(StarsCollected);
+        SoundManager.Instance.PlayStarCollected();
     }
 }
