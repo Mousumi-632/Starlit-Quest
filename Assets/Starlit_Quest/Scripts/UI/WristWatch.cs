@@ -14,12 +14,21 @@ public class WristWatch : MonoBehaviour
     [Header("Progress Bar")]
     [SerializeField] private DotProgressBar dotProgressBar;
 
+    private bool isWatchInitialized = false;
     private int countCollectedStars = 0;
     
-    private void Start()
+    private void Update()
     {
+        if (!isWatchInitialized) Initialize();
+    }
+
+    private void Initialize()
+    {
+        if (StarCounter.Instance == null) return;
+        
         dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
+        isWatchInitialized = true;
     }
 
     private void UpdateWatchUI(int count)
