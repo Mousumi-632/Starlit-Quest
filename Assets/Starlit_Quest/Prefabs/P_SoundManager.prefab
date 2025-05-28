@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81a155959edaca449f34c0b497928e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundClip: {fileID: 0}
-  onGazeEnterClip: {fileID: 0}
-  onGazeExitClip: {fileID: 0}
-  onGazeSelectClip: {fileID: 0}
-  starCollectedClip: {fileID: 0}
+  backgroundClip: {fileID: 8300000, guid: 802def9a598b5394687dc4203f567833, type: 3}
+  onGazeEnterClip: {fileID: 8300000, guid: 62d309269df306e448b70ef9c7cb65bd, type: 3}
+  onGazeExitClip: {fileID: 8300000, guid: 50f8e850a8df7d64bbaecdae7f365595, type: 3}
+  onGazeSelectClip: {fileID: 8300000, guid: d2015f8c3722058478455f4c2791fb97, type: 3}
+  starCollectedClip: {fileID: 8300000, guid: 031bc4c122b1e604cbf3be0e1cd0f72b, type: 3}
   npcIntroClip: {fileID: 0}
   npcOneClip: {fileID: 0}
   npcTwoClip: {fileID: 0}

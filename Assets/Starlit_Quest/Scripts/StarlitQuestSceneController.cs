@@ -33,6 +33,7 @@ public class StarlitQuestSceneController : MonoBehaviour
         InstantiateIfNotNull(starCounterPrefab);
         InstantiateIfNotNull(starSpawnerPrefab);
         InstantiateIfNotNull(npcPrefab);
+        SoundManager.Instance.PlayBackground();
 
         if (StarCounter.Instance != null)
             StarCounter.Instance.OnStarsChanged += OnStarCollected;
