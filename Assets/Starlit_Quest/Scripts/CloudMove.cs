@@ -26,7 +26,7 @@ public class CloudMove : MonoBehaviour
             config.cloudTransform.position = path[0];
 
             // Set initial 45° X-axis tilt
-            config.cloudTransform.rotation = Quaternion.Euler(45f, 0f, 0f);
+            config.cloudTransform.rotation = Quaternion.Euler(90f, 0f, 0f);
 
             config.cloudTransform.DOPath(path, config.duration, PathType.Linear)
                 .SetLoops(-1)
