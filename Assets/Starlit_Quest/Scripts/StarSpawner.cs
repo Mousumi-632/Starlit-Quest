@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class StarSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject starPrefab;
+    [System.Serializable]
+    public class StarConfig
+    {
+        public GameObject starPrefab;
+        public float spawnRadius = 5f;
+        public float spawnHeight = 5f;
+        public float minAngle = -90f;
+        public float maxAngle = 90f;
+    }
+
     [SerializeField] private Transform centerPoint;
-    [SerializeField] private float spawnRadius = 5f;
-    [SerializeField] private float spawnHeight = 5f;
+    [SerializeField] private List<StarConfig> starTypes = new List<StarConfig>();
 
     private void Start()
     {
@@ -27,14 +36,16 @@ public class StarSpawner : MonoBehaviour
 
     private void SpawnStar()
     {
-        float angle = Random.Range(-90f, 90f) * Mathf.Deg2Rad;
-        Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * spawnRadius;
-        Vector3 spawnPosition = centerPoint.position + offsetXZ + Vector3.up * spawnHeight;
+        if (starTypes.Count == 0)
+            return;
 
-        GameObject star = Instantiate(starPrefab, spawnPosition, Quaternion.identity);
+        StarConfig selected = starTypes[Random.Range(0, starTypes.Count)];
+        float angle = Random.Range(selected.minAngle, selected.maxAngle) * Mathf.Deg2Rad;
+        Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * selected.spawnRadius;
+        Vector3 spawnPosition = centerPoint.position + offsetXZ + Vector3.up * selected.spawnHeight;
+
+        GameObject star = Instantiate(selected.starPrefab, spawnPosition, Quaternion.identity);
         Vector3 directionToCenter = (centerPoint.position - spawnPosition).normalized;
         star.transform.up = directionToCenter;
     }
 }
-
-

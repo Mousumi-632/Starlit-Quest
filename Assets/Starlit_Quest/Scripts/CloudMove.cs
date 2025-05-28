@@ -1,57 +1,73 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using DG.Tweening;
 
 public class CloudMove : MonoBehaviour
 {
-    [SerializeField] private float radius = 5f;
-    [SerializeField] private float duration = 4f;
-    [SerializeField] private Transform centerPoint;
-    [SerializeField] private float height = 5f;
+    [System.Serializable]
+    public class CloudConfig
+    {
+        public Transform cloudTransform;
+        public float radius = 5f;
+        public float duration = 4f;
+        public float height = 5f;
+        public Transform centerPoint;       // Center of the orbit (e.g. XR Origin)
+        public float startAngle = 0f;       // Starting angle on the orbit in degrees
+    }
 
-    private Vector3[] path;
+    [SerializeField] private List<CloudConfig> clouds = new List<CloudConfig>();
 
     void Start()
     {
-        path = new Vector3[361];
-        for (int i = 0; i <= 360; i++)
+        foreach (var config in clouds)
         {
-            float rad = Mathf.Deg2Rad * i;
-            path[i] = new Vector3(
-                centerPoint.position.x + Mathf.Cos(rad) * radius,
-                height,
-                centerPoint.position.z + Mathf.Sin(rad) * radius
-            );
+            Vector3[] path = GenerateCircularPath(config);
+
+            config.cloudTransform.position = path[0];
+
+            // Set initial 45° X-axis tilt
+            config.cloudTransform.rotation = Quaternion.Euler(45f, 0f, 0f);
+
+            config.cloudTransform.DOPath(path, config.duration, PathType.Linear)
+                .SetLoops(-1)
+                .SetEase(Ease.Linear)
+                .OnUpdate(() => FaceCenter(config.cloudTransform, config.centerPoint));
         }
-
-        transform.position = path[0];
-
-        transform.DOPath(path, duration, PathType.Linear)
-                 .SetLoops(-1)
-                 .SetEase(Ease.Linear)
-                 .OnUpdate(() => FaceCenter());
     }
 
-    void FaceCenter()
+    Vector3[] GenerateCircularPath(CloudConfig config)
     {
-        Vector3 direction = centerPoint.position - transform.position;
-        direction.y = 0; 
+        Vector3[] path = new Vector3[361];
+        for (int i = 0; i <= 360; i++)
+        {
+            float angleDeg = i + config.startAngle;
+            float rad = Mathf.Deg2Rad * angleDeg;
+
+            path[i] = new Vector3(
+                config.centerPoint.position.x + Mathf.Cos(rad) * config.radius,
+                config.height,
+                config.centerPoint.position.z + Mathf.Sin(rad) * config.radius
+            );
+        }
+        return path;
+    }
+
+    void FaceCenter(Transform cloud, Transform centerPoint)
+    {
+        Vector3 direction = centerPoint.position - cloud.position;
+        direction.y = 0f;
+
         if (direction != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            Quaternion currentRotation = cloud.rotation;
+
+            // Preserve X-axis tilt while rotating to face the center
+            cloud.rotation = Quaternion.Euler(
+                currentRotation.eulerAngles.x,
+                lookRotation.eulerAngles.y,
+                currentRotation.eulerAngles.z
+            );
         }
-        // correction of the axis if needed
-        // Vector3 direction = centerPoint.position - transform.position;
-        // direction.y = 0; 
-
-        // if (direction != Vector3.zero)
-        // {
-            
-            //Quaternion lookRotation = Quaternion.LookRotation(direction);
-
-            
-            //Quaternion offset = Quaternion.Euler(0, 90, 0);
-
-            //transform.rotation = lookRotation * offset;
-        //}
     }
 }
