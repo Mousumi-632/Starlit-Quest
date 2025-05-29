@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81a155959edaca449f34c0b497928e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundGroup: {fileID: -4139183798761370331, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
+  gazeGroup: {fileID: 3436846251638986880, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
+  starGroup: {fileID: 5845993173684000046, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
+  npcGroup: {fileID: 2253349934100166813, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   backgroundClip: {fileID: 8300000, guid: 802def9a598b5394687dc4203f567833, type: 3}
   onGazeEnterClip: {fileID: 8300000, guid: 62d309269df306e448b70ef9c7cb65bd, type: 3}
   onGazeExitClip: {fileID: 8300000, guid: 50f8e850a8df7d64bbaecdae7f365595, type: 3}
