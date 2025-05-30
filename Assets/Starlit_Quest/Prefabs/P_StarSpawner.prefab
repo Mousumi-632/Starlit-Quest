@@ -61,3 +61,5 @@ MonoBehaviour:
     spawnHeight: 12
     minAngle: 30
     maxAngle: 90
+  startDelay: 20
+  spawnDelay: 5
