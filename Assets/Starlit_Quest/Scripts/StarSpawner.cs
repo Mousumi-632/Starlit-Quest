@@ -16,6 +16,8 @@ public class StarSpawner : MonoBehaviour
     [SerializeField] private Transform centerPoint;
     [SerializeField] private List<StarConfig> starTypes = new List<StarConfig>();
 
+    private int lastStarIndex = -1;
+
     private void Start()
     {
         StarCounter.Instance.OnStarsChanged += HandleStarCollected;
@@ -39,13 +41,23 @@ public class StarSpawner : MonoBehaviour
         if (starTypes.Count == 0)
             return;
 
-        StarConfig selected = starTypes[Random.Range(0, starTypes.Count)];
+        int randomIndex;
+        do
+        {
+            randomIndex = Random.Range(0, starTypes.Count);
+        }
+        while (randomIndex == lastStarIndex && starTypes.Count > 1);
+
+        lastStarIndex = randomIndex;
+        StarConfig selected = starTypes[randomIndex];
+
         float angle = Random.Range(selected.minAngle, selected.maxAngle) * Mathf.Deg2Rad;
         Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * selected.spawnRadius;
         Vector3 spawnPosition = centerPoint.position + offsetXZ + Vector3.up * selected.spawnHeight;
 
         GameObject star = Instantiate(selected.starPrefab, spawnPosition, Quaternion.identity);
         Vector3 directionToCenter = (centerPoint.position - spawnPosition).normalized;
-        star.transform.up = directionToCenter;
+        star.transform.rotation = Quaternion.LookRotation(directionToCenter);
+        star.transform.Rotate(0f, -90f, 0f);
     }
 }

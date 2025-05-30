@@ -46,8 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
   starTypes:
-  - starPrefab: {fileID: 1264816656191845480, guid: 62f00b5388a5d4a5b9aac44b4db78a9a, type: 3}
+  - starPrefab: {fileID: 2556972529575639523, guid: 2c53c743b32cf0543b9834e1beceb1a4, type: 3}
     spawnRadius: 25
     spawnHeight: 12
     minAngle: -90
     maxAngle: -30
+  - starPrefab: {fileID: 1744840291030479838, guid: 70608e2c098bef34a9bde1bb02fd7b8c, type: 3}
+    spawnRadius: 25
+    spawnHeight: 12
+    minAngle: -30
+    maxAngle: 30
+  - starPrefab: {fileID: 9185097351548568859, guid: f925833efd70ac24b920acd16157b02d, type: 3}
+    spawnRadius: 25
+    spawnHeight: 12
+    minAngle: 30
+    maxAngle: 90
