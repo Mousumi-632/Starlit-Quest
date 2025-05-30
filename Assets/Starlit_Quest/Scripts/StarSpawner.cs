@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class StarSpawner : MonoBehaviour
@@ -15,13 +16,24 @@ public class StarSpawner : MonoBehaviour
 
     [SerializeField] private Transform centerPoint;
     [SerializeField] private List<StarConfig> starTypes = new List<StarConfig>();
+    [SerializeField] private float startDelay = 10f;
+    [SerializeField] private float spawnDelay = 5f;
 
     private int lastStarIndex = -1;
 
+    public int LastStarIndex => lastStarIndex;
+
     private void Start()
     {
+        StartCoroutine(DelayedInitialization());
+    }
+
+    private IEnumerator DelayedInitialization()
+    {
+        yield return new WaitForSeconds(startDelay);
+
         StarCounter.Instance.OnStarsChanged += HandleStarCollected;
-        SpawnStar();
+        StartCoroutine(SpawnStarWithDelay());
     }
 
     private void OnDestroy()
@@ -33,7 +45,13 @@ public class StarSpawner : MonoBehaviour
     private void HandleStarCollected(int count)
     {
         if (count < 3)
-            SpawnStar();
+            StartCoroutine(SpawnStarWithDelay());
+    }
+
+    private IEnumerator SpawnStarWithDelay()
+    {
+        yield return new WaitForSeconds(spawnDelay);
+        SpawnStar();
     }
 
     private void SpawnStar()
@@ -61,3 +79,4 @@ public class StarSpawner : MonoBehaviour
         star.transform.Rotate(0f, -90f, 0f);
     }
 }
+
