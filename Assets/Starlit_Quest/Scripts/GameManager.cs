@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public Coroutine GoToStarlitQuestScene()
     {
-        return StartCoroutine(LoadScene("Scene_Beta_Dev2", () =>
+        return StartCoroutine(LoadScene("Scene_StarlitQuest", () =>
         {
             var sceneController = GameObject.FindAnyObjectByType<StarlitQuestSceneController>();
             sceneController.Initialize(this);
