@@ -107,7 +107,7 @@ MonoBehaviour:
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
   startScale: {x: 200, y: 200, z: 200}
-  endScale: {x: 6, y: 6, z: 6}
+  endScale: {x: 7, y: 7, z: 7}
 --- !u!135 &5236713056965820917
 SphereCollider:
   m_ObjectHideFlags: 0
