@@ -6,7 +6,6 @@ public class StarlitQuestSceneController : MonoBehaviour
 
    
     [SerializeField] private GameObject starCounterPrefab;
-    [SerializeField] private GameObject npcPrefab;
     [SerializeField] private GameObject starSpawnerPrefab;
     [SerializeField] private GameObject soundManagerPrefab;
 
@@ -31,7 +30,6 @@ public class StarlitQuestSceneController : MonoBehaviour
         InstantiateIfNotNull(soundManagerPrefab);
         InstantiateIfNotNull(starCounterPrefab);
         InstantiateIfNotNull(starSpawnerPrefab);
-        InstantiateIfNotNull(npcPrefab);
         SoundManager.Instance.PlayBackground();
 
         if (StarCounter.Instance != null)
