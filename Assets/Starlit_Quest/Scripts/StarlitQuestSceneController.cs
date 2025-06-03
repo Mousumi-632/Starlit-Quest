@@ -23,7 +23,6 @@ public class StarlitQuestSceneController : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
     }
 

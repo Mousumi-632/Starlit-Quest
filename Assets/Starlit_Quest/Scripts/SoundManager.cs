@@ -9,7 +9,6 @@ public class SoundManager : MonoBehaviour
     public AudioMixerGroup backgroundGroup;
     public AudioMixerGroup gazeGroup;
     public AudioMixerGroup starGroup;
-    public AudioMixerGroup npcGroup;
 
     [Header("Group 1: Background")]
     public AudioClip backgroundClip;
@@ -22,32 +21,23 @@ public class SoundManager : MonoBehaviour
     [Header("Group 3: Star Collection")]
     public AudioClip starCollectedClip;
 
-    [Header("Group 4: NPC Dialogues")]
-    public AudioClip npcIntroClip;
-    public AudioClip npcOneClip;
-    public AudioClip npcTwoClip;
-    public AudioClip npcThreeClip;
-
     private AudioSource backgroundSource;
     private AudioSource gazeSource;
     private AudioSource starSource;
-    private AudioSource npcSource;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
 
-        
         backgroundSource = CreateAudioSource("Background", backgroundGroup, true);
         gazeSource = CreateAudioSource("Gaze", gazeGroup, false);
         starSource = CreateAudioSource("Star", starGroup, false);
-        npcSource = CreateAudioSource("NPC", npcGroup, false);
     }
 
     private void OnDestroy()
@@ -78,18 +68,6 @@ public class SoundManager : MonoBehaviour
     public void PlayGazeExit() => PlaySound(gazeSource, onGazeExitClip);
     public void PlayGazeSelect() => PlaySound(gazeSource, onGazeSelectClip);
     public void PlayStarCollected() => PlaySound(starSource, starCollectedClip);
-
-    public void PlayNPCDialogue(int starsCollected, int maxStars)
-    {
-        if (starsCollected == 0)
-            PlaySound(npcSource, npcIntroClip);
-        else if (starsCollected == 1)
-            PlaySound(npcSource, npcOneClip);
-        else if (starsCollected == 2)
-            PlaySound(npcSource, npcTwoClip);
-        else if (starsCollected == maxStars)
-            PlaySound(npcSource, npcThreeClip);
-    }
 
     private void PlaySound(AudioSource source, AudioClip clip)
     {

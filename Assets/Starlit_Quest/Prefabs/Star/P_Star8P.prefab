@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9069877773025121365
 Transform:
@@ -101,13 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f46605f991fd24eb15c55e345780d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTargetTransform: {fileID: 1102466871362785115, guid: 3ef0fe62aa404334dbc20d1286895961, type: 3}
+  moveTargetTransform: {fileID: 2938740546159351923, guid: 3321ff226a0c0724680c36fb447f52ce, type: 3}
   moveDuration: 5
   gazeDefaultMaterial: {fileID: 2100000, guid: e3ab2dd5f40eb495eb266bc8e0b7c484, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
   startScale: {x: 80, y: 80, z: 80}
-  endScale: {x: 1, y: 1, z: 1}
+  endScale: {x: 5, y: 5, z: 5}
 --- !u!135 &5559849281550619145
 SphereCollider:
   m_ObjectHideFlags: 0

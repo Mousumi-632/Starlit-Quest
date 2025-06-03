@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour
     private IEnumerator ShowIntroAndSubscribe()
     {
         // Show intro dialog
-        npcText.text = "Alright, friend — just like we talked about! The stars are waiting, and your mission starts *now*. Take a moment… look around. Nature’s beautiful tonight";
+        npcText.text = "...";
         hasShownIntro = true;
 
         // Wait before showing star-related text
@@ -40,21 +40,21 @@ public class NPC : MonoBehaviour
 
     private void UpdateText(int stars)
     {
-        SoundManager.Instance.PlayNPCDialogue(stars, StarCounter.Instance.MaxStars); 
+       
 
         switch (stars)
         {
             case 0:
-                npcText.text = "Look at your wrist clock,it shows the star we need. When you’re ready, gaze at the matching star";
+                npcText.text = "...";
                 break;
             case 1:
-                npcText.text = "Keep your eyes on it — the loading bar will fill as you focus. If you lose focus — the timer resets. Fill the glass jar with stars to complete the challenge.";
+                npcText.text = "...";
                 break;
             case 2:
-                npcText.text = " But watch out! Clouds and comets will try to steal your attention";
+                npcText.text = "...";
                 break;
             case 3:
-                npcText.text = "Let’s see how sharp your eyes really are! You’ve got this!";
+                npcText.text = "...";
                 break;
             default:
                 npcText.text = $"You collected {stars} stars!";
