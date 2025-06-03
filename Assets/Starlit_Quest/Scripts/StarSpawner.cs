@@ -18,13 +18,14 @@ public class StarSpawner : MonoBehaviour
     [SerializeField] private List<StarConfig> starTypes = new List<StarConfig>();
     [SerializeField] private float startDelay = 10f;
     [SerializeField] private float spawnDelay = 5f;
+    [SerializeField] private int totalStarsToSpawn = 5;
 
-    private int lastStarIndex = -1;
-
-    public int LastStarIndex => lastStarIndex;
+    private List<StarConfig> unusedStarTypes = new List<StarConfig>();
+    private int spawnedCount = 0;
 
     private void Start()
     {
+        RefreshStarPool();
         StartCoroutine(DelayedInitialization());
     }
 
@@ -33,6 +34,8 @@ public class StarSpawner : MonoBehaviour
         yield return new WaitForSeconds(startDelay);
 
         StarCounter.Instance.OnStarsChanged += HandleStarCollected;
+
+        // Spawn the first star only
         StartCoroutine(SpawnStarWithDelay());
     }
 
@@ -44,8 +47,10 @@ public class StarSpawner : MonoBehaviour
 
     private void HandleStarCollected(int count)
     {
-        if (count < 3)
+        if (spawnedCount < totalStarsToSpawn)
+        {
             StartCoroutine(SpawnStarWithDelay());
+        }
     }
 
     private IEnumerator SpawnStarWithDelay()
@@ -56,18 +61,19 @@ public class StarSpawner : MonoBehaviour
 
     private void SpawnStar()
     {
-        if (starTypes.Count == 0)
+        if (spawnedCount >= totalStarsToSpawn)
             return;
 
-        int randomIndex;
-        do
+        if (unusedStarTypes.Count == 0)
         {
-            randomIndex = Random.Range(0, starTypes.Count);
+            RefreshStarPool();
+            if (unusedStarTypes.Count == 0)
+                return;
         }
-        while (randomIndex == lastStarIndex && starTypes.Count > 1);
 
-        lastStarIndex = randomIndex;
-        StarConfig selected = starTypes[randomIndex];
+        int randomIndex = Random.Range(0, unusedStarTypes.Count);
+        StarConfig selected = unusedStarTypes[randomIndex];
+        unusedStarTypes.RemoveAt(randomIndex);
 
         float angle = Random.Range(selected.minAngle, selected.maxAngle) * Mathf.Deg2Rad;
         Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * selected.spawnRadius;
@@ -77,6 +83,12 @@ public class StarSpawner : MonoBehaviour
         Vector3 directionToCenter = (centerPoint.position - spawnPosition).normalized;
         star.transform.rotation = Quaternion.LookRotation(directionToCenter);
         star.transform.Rotate(0f, -90f, 0f);
+
+        spawnedCount++;
+    }
+
+    private void RefreshStarPool()
+    {
+        unusedStarTypes = new List<StarConfig>(starTypes);
     }
 }
-

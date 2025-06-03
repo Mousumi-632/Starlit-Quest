@@ -8,7 +8,7 @@ public class StarCounter : MonoBehaviour, IStarCounter
     public int StarsCollected { get; private set; } = 0;
 
     [SerializeField]
-    private int maxStars = 3; 
+    private int maxStars = 5; 
 
     public int MaxStars => maxStars; 
 
