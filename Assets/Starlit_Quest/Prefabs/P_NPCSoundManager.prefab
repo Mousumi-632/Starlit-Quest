@@ -47,9 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcGroup: {fileID: 2253349934100166813, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   npcIntroClip: {fileID: 8300000, guid: 5bfad03ab37bc254b8247cb772751c74, type: 3}
-  npcOneClip: {fileID: 8300000, guid: 524a8a7dcd53569458c627316a53b2e6, type: 3}
-  npcTwoClip: {fileID: 8300000, guid: 70906273b7252344e859105c480986f9, type: 3}
-  npcThreeClip: {fileID: 8300000, guid: 73db4968d5a5aeb4e8b353a8817caf3d, type: 3}
+  npcDistracionsClip: {fileID: 8300000, guid: 524a8a7dcd53569458c627316a53b2e6, type: 3}
+  npcFailureClipA: {fileID: 8300000, guid: 70906273b7252344e859105c480986f9, type: 3}
+  npcFailureClipB: {fileID: 8300000, guid: eb9e08ca44e1d8c4696ecdffbbb3b03c, type: 3}
+  npcFailureClipC: {fileID: 8300000, guid: 86b57f0575388454989358b1bfc3e0c7, type: 3}
+  npcEndClip: {fileID: 8300000, guid: 73db4968d5a5aeb4e8b353a8817caf3d, type: 3}
 --- !u!82 &7345005299752041382
 AudioSource:
   m_ObjectHideFlags: 0

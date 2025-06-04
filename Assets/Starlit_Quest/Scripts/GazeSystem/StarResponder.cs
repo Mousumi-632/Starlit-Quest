@@ -52,7 +52,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         objectRenderer.material = gazeOngoingMaterial;
         SoundManager.Instance.PlayGazeEnter();
 
-        // Cancel any pending gaze failure
+    
         if (gazeFailureCoroutine != null)
         {
             StopCoroutine(gazeFailureCoroutine);
@@ -67,7 +67,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         objectRenderer.material = gazeDefaultMaterial;
         SoundManager.Instance.PlayGazeExit();
 
-        // Start gaze failure countdown
+    
         if (gazeFailureCoroutine != null)
         {
             StopCoroutine(gazeFailureCoroutine);
@@ -107,6 +107,16 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     {
         Debug.Log($"{gameObject.name} gaze failed. Deactivating and repositioning...");
 
+        NPCSoundManager npcSoundManager = FindAnyObjectByType<NPCSoundManager>();
+        if (npcSoundManager != null)
+        {
+            npcSoundManager.NpcGazeFailure();
+        }
+        else
+        {
+            Debug.LogWarning("NPCSoundManager not found in the scene.");
+        }
+
         StartCoroutine(HandleGazeFailure());
     }
 
@@ -114,25 +124,21 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     {
         Debug.Log($"{gameObject.name} - Starting gaze failure handling...");
 
-        // Disable visual and collider components
+       
         SetActiveVisuals(false);
 
-        // Wait for 10 seconds while invisible/inactive
         yield return new WaitForSeconds(10f);
 
-        // Reposition star
         float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
         Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * spawnRadius;
         Vector3 newPosition = centerPoint.position + offsetXZ + Vector3.up * spawnHeight;
 
         transform.position = newPosition;
 
-        // Face center point like StarSpawner does
         Vector3 directionToCenter = (centerPoint.position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(directionToCenter);
         transform.Rotate(0f, -90f, 0f);
 
-        // Enable visual and collider components back
         SetActiveVisuals(true);
 
         Debug.Log($"{gameObject.name} - Repositioned and reactivated visuals.");

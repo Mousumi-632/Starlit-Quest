@@ -10,11 +10,14 @@ public class NPCSoundManager : MonoBehaviour
 
     [Header("NPC Dialogues (3D Audio)")]
     public AudioClip npcIntroClip;
-    public AudioClip npcOneClip;
-    public AudioClip npcTwoClip;
-    public AudioClip npcThreeClip;
+    public AudioClip npcDistracionsClip;
+    public AudioClip npcFailureClipA;
+    public AudioClip npcFailureClipB;
+    public AudioClip npcFailureClipC;
+    public AudioClip npcEndClip;
 
     private AudioSource npcSource;
+    private int gazeFailureCount = 0;
 
     private void Awake()
     {
@@ -38,10 +41,8 @@ public class NPCSoundManager : MonoBehaviour
         while (StarCounter.Instance == null)
             yield return null;
 
-        // Subscribe to star updates
         StarCounter.Instance.OnStarsChanged += OnStarsChanged;
 
-        // Play current state just in case stars were added before this subscribed
         OnStarsChanged(StarCounter.Instance.StarsCollected);
     }
 
@@ -59,16 +60,12 @@ public class NPCSoundManager : MonoBehaviour
 
     public void PlayNPCDialogue(int starsCollected, int maxStars)
     {
-        Debug.Log($"NPC Dialogue Triggered: Stars = {starsCollected}, Max = {maxStars}");
-
         if (starsCollected == 0)
             PlaySound(npcIntroClip);
-        else if (starsCollected == maxStars)
-            PlaySound(npcThreeClip);
-        else if (starsCollected == 2)
-            PlaySound(npcTwoClip);
         else if (starsCollected == 1)
-            PlaySound(npcOneClip);
+            PlaySound(npcDistracionsClip);
+        else if (starsCollected == maxStars)
+            PlaySound(npcEndClip);
     }
 
     public void PlaySound(AudioClip clip)
@@ -76,5 +73,27 @@ public class NPCSoundManager : MonoBehaviour
         if (clip == null || npcSource == null) return;
         npcSource.clip = clip;
         npcSource.Play();
+    }
+
+   
+    public void NpcGazeFailure()
+    {
+        AudioClip failureClip = null;
+
+        switch (gazeFailureCount % 3)
+        {
+            case 0:
+                failureClip = npcFailureClipA;
+                break;
+            case 1:
+                failureClip = npcFailureClipB;
+                break;
+            case 2:
+                failureClip = npcFailureClipC;
+                break;
+        }
+
+        PlaySound(failureClip);
+        gazeFailureCount++;
     }
 }
