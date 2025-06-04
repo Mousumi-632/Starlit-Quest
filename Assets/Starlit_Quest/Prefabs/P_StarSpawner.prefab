@@ -71,6 +71,6 @@ MonoBehaviour:
     spawnHeight: 12
     minAngle: -45
     maxAngle: -90
-  startDelay: 0
-  spawnDelay: 0
+  startDelay: 20
+  spawnDelay: 10
   totalStarsToSpawn: 5
