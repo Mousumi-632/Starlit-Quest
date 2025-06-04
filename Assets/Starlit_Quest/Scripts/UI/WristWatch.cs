@@ -16,6 +16,7 @@ public class WristWatch : MonoBehaviour
 
     private bool isWatchInitialized = false;
     private int countCollectedStars = 0;
+    private StarSpawner starSpawner;
     
     private void Update()
     {
@@ -28,6 +29,9 @@ public class WristWatch : MonoBehaviour
         
         dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
+        
+        // starSpawner = FindObjectOfType<StarSpawner>();
+        
         isWatchInitialized = true;
     }
 
