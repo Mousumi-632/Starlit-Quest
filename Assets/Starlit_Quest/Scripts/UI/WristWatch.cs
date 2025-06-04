@@ -15,8 +15,9 @@ public class WristWatch : MonoBehaviour
     [SerializeField] private DotProgressBar dotProgressBar;
 
     private bool isWatchInitialized = false;
-    private int countCollectedStars = 0;
+    private int numCollectedStars = 0;
     private StarSpawner starSpawner;
+    private int currentStarIndex;
 
     private void Start()
     {
@@ -34,22 +35,28 @@ public class WristWatch : MonoBehaviour
     {
         starSpawner = FindFirstObjectByType<StarSpawner>();
         if (starSpawner == null) return;
-        if (starSpawner.CurrentStarIndex < 0) return;
-        UpdateTargetStarDisplay();
+        starSpawner.OnStarSpawned += DisplayNewStar;
         
         if (StarCounter.Instance == null) return;
         dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
-        StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
+        StarCounter.Instance.OnStarsChanged += CelebrateAStarCollected;
         
         isWatchInitialized = true;
     }
-
-    private void UpdateWatchUI(int count)
+    
+    private void CelebrateAStarCollected(int count)
     {
-        countCollectedStars = count;
-        if (countCollectedStars < targetStars.Count)
+        numCollectedStars = count;
+        // play celebration animation
+        return;
+    }
+
+    private void DisplayNewStar(int starIndex)
+    {
+        currentStarIndex = starIndex;
+        if (numCollectedStars < targetStars.Count - 1)
         {
-            StartCoroutine(AsyncUpdateWatchUI());
+            StartCoroutine(AsyncDisplayNewStar());
         }
         else
         {
@@ -57,23 +64,22 @@ public class WristWatch : MonoBehaviour
         }
     }
 
-    private IEnumerator AsyncUpdateWatchUI()
+    private IEnumerator AsyncDisplayNewStar()
     {
         yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         UpdateTargetStarDisplay();
         yield return targetStarImage.transform.DOScale(1f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         
-        dotProgressBar.UpdateDisplay(countCollectedStars);
+        dotProgressBar.UpdateDisplay(numCollectedStars);
     }
 
     private void UpdateTargetStarDisplay()
     {
         targetStarImage.texture = null;
-        int currentStarIndex = starSpawner.CurrentStarIndex;
         if (currentStarIndex < 0) currentStarIndex = 0;
-        if (currentStarIndex >= targetStars.Count) currentStarIndex = targetStars.Count - 1;
+        if (currentStarIndex >= targetStars.Count - 1) currentStarIndex = targetStars.Count - 2;
         
-        Debug.Log("======= watch UI index: " + currentStarIndex);
+        // Debug.Log("======= watch UI index: " + currentStarIndex);
         targetStarImage.texture = targetStars[currentStarIndex];
     }
 

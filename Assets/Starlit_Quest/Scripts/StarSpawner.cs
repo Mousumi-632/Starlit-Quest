@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class StarSpawner : MonoBehaviour
-{
+{ 
+    public event Action<int> OnStarSpawned;
+    
     [System.Serializable]
     public class StarConfig
     {
@@ -22,8 +26,6 @@ public class StarSpawner : MonoBehaviour
 
     private List<StarConfig> unusedStarTypes = new List<StarConfig>();
     private int spawnedCount = 0;
-
-    public int CurrentStarIndex { get; private set; } = -1;
 
     private void Start()
     {
@@ -72,7 +74,7 @@ public class StarSpawner : MonoBehaviour
 
         int randomIndex = Random.Range(0, unusedStarTypes.Count);
         StarConfig selected = unusedStarTypes[randomIndex];
-        CurrentStarIndex = starTypes.IndexOf(selected);
+        OnStarSpawned?.Invoke(starTypes.IndexOf(selected));
         unusedStarTypes.RemoveAt(randomIndex);
 
         float angle = Random.Range(selected.minAngle, selected.maxAngle) * Mathf.Deg2Rad;

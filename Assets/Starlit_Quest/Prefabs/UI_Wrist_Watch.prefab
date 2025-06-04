@@ -158,7 +158,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 72460607d730949888c7764c206ff836, type: 3}
   - {fileID: 2800000, guid: 833aa369aade04fa8a74ed4a06e96351, type: 3}
   - {fileID: 2800000, guid: 83b38875f136e40469c3b50d1895eb3d, type: 3}
-  - {fileID: 2800000, guid: f3d99bf39e79a4770b601ce21c764360, type: 3}
+  - {fileID: 2800000, guid: 98db908bd4dc545079deafa4ab718199, type: 3}
   dotProgressBar: {fileID: 8254450329022915410}
 --- !u!1 &4543986775816285964
 GameObject:
