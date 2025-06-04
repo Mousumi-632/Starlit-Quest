@@ -16,15 +16,26 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     [SerializeField] private Vector3 startScale = Vector3.one;
     [SerializeField] private Vector3 endScale = new Vector3(0.1f, 0.1f, 0.1f);
 
+    [Header("Gaze Failure Settings")]
+    [SerializeField] private float gazeFailureDelay = 10f;
+
+    [Header("Reposition Settings")]
+    [SerializeField] private Transform centerPoint;
+    [SerializeField] private float spawnRadius = 5f;
+    [SerializeField] private float spawnHeight = 5f;
+    [SerializeField] private float minAngle = -90f;
+    [SerializeField] private float maxAngle = 90f;
+
     private Renderer objectRenderer;
     private bool hasBeenSelected = false;
+    private Coroutine gazeFailureCoroutine;
 
     void Awake()
     {
         objectRenderer = GetComponent<Renderer>();
 
         if (objectRenderer == null || gazeDefaultMaterial == null || gazeOngoingMaterial == null ||
-            gazeCompleteMaterial == null || moveTargetTransform == null)
+            gazeCompleteMaterial == null || moveTargetTransform == null || centerPoint == null)
         {
             Debug.LogError("Missing required serialized fields on " + gameObject.name);
             Destroy(gameObject);
@@ -37,15 +48,31 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     public void OnGazeEnter()
     {
         if (hasBeenSelected) return;
+
         objectRenderer.material = gazeOngoingMaterial;
         SoundManager.Instance.PlayGazeEnter();
+
+        // Cancel any pending gaze failure
+        if (gazeFailureCoroutine != null)
+        {
+            StopCoroutine(gazeFailureCoroutine);
+            gazeFailureCoroutine = null;
+        }
     }
 
     public void OnGazeExit()
     {
         if (hasBeenSelected) return;
+
         objectRenderer.material = gazeDefaultMaterial;
         SoundManager.Instance.PlayGazeExit();
+
+        // Start gaze failure countdown
+        if (gazeFailureCoroutine != null)
+        {
+            StopCoroutine(gazeFailureCoroutine);
+        }
+        gazeFailureCoroutine = StartCoroutine(GazeFailureCountdown());
     }
 
     public void OnGazeSelect()
@@ -53,8 +80,72 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         if (hasBeenSelected) return;
 
         hasBeenSelected = true;
+
+        if (gazeFailureCoroutine != null)
+        {
+            StopCoroutine(gazeFailureCoroutine);
+            gazeFailureCoroutine = null;
+        }
+
         StartCoroutine(AsyncGazeSelection());
         SoundManager.Instance.PlayGazeSelect();
+    }
+
+    private IEnumerator GazeFailureCountdown()
+    {
+        yield return new WaitForSeconds(gazeFailureDelay);
+
+        if (!hasBeenSelected)
+        {
+            OnGazeFailure();
+        }
+
+        gazeFailureCoroutine = null;
+    }
+
+    public void OnGazeFailure()
+    {
+        Debug.Log($"{gameObject.name} gaze failed. Deactivating and repositioning...");
+
+        StartCoroutine(HandleGazeFailure());
+    }
+
+    private IEnumerator HandleGazeFailure()
+    {
+        Debug.Log($"{gameObject.name} - Starting gaze failure handling...");
+
+        // Disable visual and collider components
+        SetActiveVisuals(false);
+
+        // Wait for 10 seconds while invisible/inactive
+        yield return new WaitForSeconds(10f);
+
+        // Reposition star
+        float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
+        Vector3 offsetXZ = new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * spawnRadius;
+        Vector3 newPosition = centerPoint.position + offsetXZ + Vector3.up * spawnHeight;
+
+        transform.position = newPosition;
+
+        // Face center point like StarSpawner does
+        Vector3 directionToCenter = (centerPoint.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(directionToCenter);
+        transform.Rotate(0f, -90f, 0f);
+
+        // Enable visual and collider components back
+        SetActiveVisuals(true);
+
+        Debug.Log($"{gameObject.name} - Repositioned and reactivated visuals.");
+    }
+
+    private void SetActiveVisuals(bool active)
+    {
+        if (objectRenderer != null)
+            objectRenderer.enabled = active;
+
+        Collider col = GetComponent<Collider>();
+        if (col != null)
+            col.enabled = active;
     }
 
     private IEnumerator AsyncGazeSelection()
@@ -72,7 +163,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         float elapsed = 0f;
         Vector3 toTarget = targetPos - startPos;
         Vector3 axis = Vector3.Cross(Vector3.up, toTarget).normalized;
-        if (axis == Vector3.zero) axis = Vector3.right; // fallback if movement is vertical
+        if (axis == Vector3.zero) axis = Vector3.right;
 
         while (elapsed < duration)
         {
@@ -95,3 +186,4 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         transform.localScale = endScale;
     }
 }
+

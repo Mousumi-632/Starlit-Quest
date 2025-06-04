@@ -108,6 +108,12 @@ MonoBehaviour:
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
   startScale: {x: 200, y: 200, z: 200}
   endScale: {x: 7, y: 7, z: 7}
+  gazeFailureDelay: 10
+  centerPoint: {fileID: 1310674987152294367, guid: bf952687198d8cb4ba9995f9b171b610, type: 3}
+  spawnRadius: 25
+  spawnHeight: 12
+  minAngle: -90
+  maxAngle: 90
 --- !u!135 &5236713056965820917
 SphereCollider:
   m_ObjectHideFlags: 0
