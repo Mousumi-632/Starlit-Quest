@@ -17,7 +17,12 @@ public class WristWatch : MonoBehaviour
     private bool isWatchInitialized = false;
     private int countCollectedStars = 0;
     private StarSpawner starSpawner;
-    
+
+    private void Start()
+    {
+        targetStarImage.texture = targetStars[0]; // set default texture
+    }
+
     private void Update()
     {
         if (!isWatchInitialized) Initialize();
@@ -25,12 +30,13 @@ public class WristWatch : MonoBehaviour
 
     private void Initialize()
     {
-        if (StarCounter.Instance == null) return;
+        starSpawner = FindFirstObjectByType<StarSpawner>();
+        if (starSpawner == null) return;
+        UpdateTargetStarDisplay();
         
+        if (StarCounter.Instance == null) return;
         dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
         StarCounter.Instance.OnStarsChanged += UpdateWatchUI;
-        
-        // starSpawner = FindObjectOfType<StarSpawner>();
         
         isWatchInitialized = true;
     }
@@ -60,7 +66,9 @@ public class WristWatch : MonoBehaviour
     private void UpdateTargetStarDisplay()
     {
         targetStarImage.texture = null;
-        targetStarImage.texture = targetStars[countCollectedStars];
+        int currentStarIndex = starSpawner.CurrentStarIndex;
+        if (currentStarIndex >= targetStars.Count) currentStarIndex = targetStars.Count - 1;
+        targetStarImage.texture = targetStars[currentStarIndex];
     }
 
     private void CompleteTask()
