@@ -67,6 +67,7 @@ public class WristWatch : MonoBehaviour
     {
         targetStarImage.texture = null;
         int currentStarIndex = starSpawner.CurrentStarIndex;
+        if (currentStarIndex < 0) currentStarIndex = 0;
         if (currentStarIndex >= targetStars.Count) currentStarIndex = targetStars.Count - 1;
         targetStarImage.texture = targetStars[currentStarIndex];
     }
