@@ -20,7 +20,9 @@ public class WristWatch : MonoBehaviour
 
     private void Start()
     {
-        targetStarImage.texture = targetStars[0]; // set default texture
+        // set default texture
+        targetStarImage.texture = null;
+        targetStarImage.texture = targetStars[targetStars.Count - 1]; 
     }
 
     private void Update()
@@ -32,6 +34,7 @@ public class WristWatch : MonoBehaviour
     {
         starSpawner = FindFirstObjectByType<StarSpawner>();
         if (starSpawner == null) return;
+        if (starSpawner.CurrentStarIndex < 0) return;
         UpdateTargetStarDisplay();
         
         if (StarCounter.Instance == null) return;
@@ -69,6 +72,8 @@ public class WristWatch : MonoBehaviour
         int currentStarIndex = starSpawner.CurrentStarIndex;
         if (currentStarIndex < 0) currentStarIndex = 0;
         if (currentStarIndex >= targetStars.Count) currentStarIndex = targetStars.Count - 1;
+        
+        Debug.Log("======= watch UI index: " + currentStarIndex);
         targetStarImage.texture = targetStars[currentStarIndex];
     }
 
