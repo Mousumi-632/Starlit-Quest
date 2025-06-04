@@ -61,5 +61,16 @@ MonoBehaviour:
     spawnHeight: 12
     minAngle: 30
     maxAngle: 90
-  startDelay: 20
-  spawnDelay: 5
+  - starPrefab: {fileID: 1744840291030479838, guid: 97a29bcad03020e4b88a081b78ed3ed6, type: 3}
+    spawnRadius: 25
+    spawnHeight: 12
+    minAngle: -30
+    maxAngle: 45
+  - starPrefab: {fileID: 9185097351548568859, guid: a1cd91d6658e9924cbf15e2cb97b659d, type: 3}
+    spawnRadius: 25
+    spawnHeight: 12
+    minAngle: -45
+    maxAngle: -90
+  startDelay: 0
+  spawnDelay: 0
+  totalStarsToSpawn: 5
