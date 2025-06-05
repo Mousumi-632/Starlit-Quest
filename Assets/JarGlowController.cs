@@ -4,10 +4,14 @@ public class JarGlowController : MonoBehaviour
 {
     [SerializeField] private Renderer jarRenderer;
     [SerializeField] private int maxStars = 5;
-    [SerializeField] private float maxGlowIntensity = 5f;
+    [SerializeField] private Color glowColor = Color.yellow;
+    [SerializeField] private float minGlow = 0.2f;
+    [SerializeField] private float maxGlow = 5f;
 
     private int currentStars = 0;
     private Material glowMaterial;
+
+
 
     private void Start()
     {
@@ -31,8 +35,10 @@ public class JarGlowController : MonoBehaviour
     private void UpdateGlow()
     {
         float t = (float)currentStars / maxStars;
-        Color baseColor = Color.yellow;
-        Color finalColor = baseColor * Mathf.LinearToGammaSpace(t * maxGlowIntensity);
+        float intensity = Mathf.Lerp(minGlow, maxGlow, t);
+        Color finalColor = glowColor * intensity;
+
         glowMaterial.SetColor("_EmissionColor", finalColor);
+        DynamicGI.SetEmissive(jarRenderer, finalColor);
     }
 }

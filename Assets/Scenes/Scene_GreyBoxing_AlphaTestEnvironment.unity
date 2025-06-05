@@ -23445,7 +23445,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jarRenderer: {fileID: 3597390921421282646}
   maxStars: 5
-  maxGlowIntensity: 5
+  glowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  minGlow: 0
+  maxGlow: 5
 --- !u!1 &8516968889274003389
 GameObject:
   m_ObjectHideFlags: 0
