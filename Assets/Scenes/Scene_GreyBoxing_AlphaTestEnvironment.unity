@@ -4979,7 +4979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &854684667
 Transform:
   m_ObjectHideFlags: 0
@@ -13058,6 +13058,55 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317707769}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1318301006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318301008}
+  - component: {fileID: 1318301007}
+  m_Layer: 0
+  m_Name: BloomVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1318301007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318301006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: b715fc6a71f2d0f4dbb92420bec44904, type: 2}
+--- !u!4 &1318301008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318301006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.77805513, y: 2.6043484, z: 1.0100726}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1319086789
 GameObject:
   m_ObjectHideFlags: 0
@@ -20871,6 +20920,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 79fb9052604fa4031a3fdf581d6e383f, type: 2}
+  - {fileID: 2100000, guid: 86c3663d7366573489c61e521e0865c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23335,6 +23385,7 @@ GameObject:
   - component: {fileID: 3597390921421282646}
   - component: {fileID: 8476439001096225697}
   - component: {fileID: 8476439001096225696}
+  - component: {fileID: 8476439001096225698}
   m_Layer: 0
   m_Name: Jar_GlassMiddle_geo
   m_TagString: Untagged
@@ -23349,14 +23400,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8476439001096225695}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a9d5fee6b86689459d0c18256ba0558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jarParticleSystem: {fileID: 854684668}
   maxStars: 5
-  maxParticles: 100
+  maxParticles: 0
 --- !u!136 &8476439001096225697
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23380,6 +23431,21 @@ CapsuleCollider:
   m_Height: 0.28910974
   m_Direction: 1
   m_Center: {x: 0.000000029802322, y: 0.010684692, z: -0.00000023841858}
+--- !u!114 &8476439001096225698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476439001096225695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679a932e6485ad8499556dd6dcab0f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jarRenderer: {fileID: 3597390921421282646}
+  maxStars: 5
+  maxGlowIntensity: 5
 --- !u!1 &8516968889274003389
 GameObject:
   m_ObjectHideFlags: 0
@@ -23599,3 +23665,4 @@ SceneRoots:
   - {fileID: 1671110633}
   - {fileID: 543450652474802555}
   - {fileID: 7866199911214937335}
+  - {fileID: 1318301008}
