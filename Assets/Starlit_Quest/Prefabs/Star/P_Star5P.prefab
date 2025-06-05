@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 2.0134945, y: 2.0134945, z: 2.0134945}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2136757094473102633}
+  - {fileID: 4018870010144767161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -180.742, y: 182.664, z: 174.776}
 --- !u!33 &8111556648122686751
@@ -107,6 +107,7 @@ MonoBehaviour:
   gazeDefaultMaterial: {fileID: 2100000, guid: e3ab2dd5f40eb495eb266bc8e0b7c484, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
+  gazeLoadingCircle: {fileID: 7711306143461491957}
   startScale: {x: 200, y: 200, z: 200}
   endScale: {x: 7, y: 7, z: 7}
   gazeFailureDelay: 10
@@ -220,8 +221,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b74d3580586ae448b96d56efde89ddb6, type: 3}
---- !u!4 &2136757094473102633 stripped
+--- !u!4 &4018870010144767161 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5969016154873894162, guid: b74d3580586ae448b96d56efde89ddb6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8697745193738755202, guid: b74d3580586ae448b96d56efde89ddb6, type: 3}
+  m_PrefabInstance: {fileID: 5724494937740730427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7711306143461491957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2627126647190561998, guid: b74d3580586ae448b96d56efde89ddb6, type: 3}
   m_PrefabInstance: {fileID: 5724494937740730427}
   m_PrefabAsset: {fileID: 0}

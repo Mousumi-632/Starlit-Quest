@@ -11,6 +11,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     [SerializeField] private Material gazeDefaultMaterial;
     [SerializeField] private Material gazeOngoingMaterial;
     [SerializeField] private Material gazeCompleteMaterial;
+    [SerializeField] private GameObject gazeLoadingCircle;
 
     [Header("Shrink Settings")]
     [SerializeField] private Vector3 startScale = Vector3.one;
@@ -35,7 +36,8 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         objectRenderer = GetComponent<Renderer>();
 
         if (objectRenderer == null || gazeDefaultMaterial == null || gazeOngoingMaterial == null ||
-            gazeCompleteMaterial == null || moveTargetTransform == null || centerPoint == null)
+            gazeCompleteMaterial == null || moveTargetTransform == null || centerPoint == null ||
+            gazeLoadingCircle == null)
         {
             Debug.LogError("Missing required serialized fields on " + gameObject.name);
             Destroy(gameObject);
@@ -43,6 +45,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
 
         objectRenderer.material = gazeDefaultMaterial;
         transform.localScale = startScale;
+        gazeLoadingCircle.SetActive(false);
     }
 
     public void OnGazeEnter()
@@ -50,6 +53,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         if (hasBeenSelected) return;
 
         objectRenderer.material = gazeOngoingMaterial;
+        gazeLoadingCircle.SetActive(true);
         SoundManager.Instance.PlayGazeEnter();
 
     
@@ -65,6 +69,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
         if (hasBeenSelected) return;
 
         objectRenderer.material = gazeDefaultMaterial;
+        gazeLoadingCircle.SetActive(false);
         SoundManager.Instance.PlayGazeExit();
 
     
@@ -157,6 +162,7 @@ public class StarResponder : MonoBehaviour, IGazeResponder
     private IEnumerator AsyncGazeSelection()
     {
         objectRenderer.material = gazeCompleteMaterial;
+        gazeLoadingCircle.SetActive(false);
 
         yield return transform.DOShakePosition(1f, 0.1f, 15).WaitForCompletion();
 

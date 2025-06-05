@@ -107,6 +107,7 @@ MonoBehaviour:
   gazeDefaultMaterial: {fileID: 2100000, guid: e3ab2dd5f40eb495eb266bc8e0b7c484, type: 2}
   gazeOngoingMaterial: {fileID: 2100000, guid: ea6c1ac393fa749ceb861492f6a1abb7, type: 2}
   gazeCompleteMaterial: {fileID: 2100000, guid: 8e51eebc4f7ec448b86fa14437b030c9, type: 2}
+  gazeLoadingCircle: {fileID: 6960035179506972288}
   startScale: {x: 40, y: 200, z: 200}
   endScale: {x: 7, y: 7, z: 7}
   gazeFailureDelay: 10
@@ -223,5 +224,10 @@ PrefabInstance:
 --- !u!4 &4347935105819692748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8697745193738755202, guid: b74d3580586ae448b96d56efde89ddb6, type: 3}
+  m_PrefabInstance: {fileID: 4963651624237896270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6960035179506972288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2627126647190561998, guid: b74d3580586ae448b96d56efde89ddb6, type: 3}
   m_PrefabInstance: {fileID: 4963651624237896270}
   m_PrefabAsset: {fileID: 0}
