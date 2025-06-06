@@ -17,7 +17,7 @@ public class WristWatch : MonoBehaviour
     [Header("UI VFX")]
     [SerializeField] private Transform vfxPlaceholder;
     [SerializeField] private GameObject vfxAStarFound;
-    // [SerializeField] private GameObject vfxAllStarsFound;
+    [SerializeField] private GameObject vfxAllStarsFound;
     [SerializeField] private List<Texture> emojis;
 
     private bool isWatchInitialized = false;
@@ -41,11 +41,11 @@ public class WristWatch : MonoBehaviour
     {
         starSpawner = FindFirstObjectByType<StarSpawner>();
         if (starSpawner == null) return;
-        starSpawner.OnStarSpawned += DisplayNewStar;
+        starSpawner.OnStarSpawned += DisplayNewStar; // event invoked when a new star spawned in sky
         
         if (StarCounter.Instance == null) return;
         dotProgressBar.Initialize(StarCounter.Instance.MaxStars);
-        StarCounter.Instance.OnStarsChanged += CelebrateAStarCollected;
+        StarCounter.Instance.OnStarsChanged += CelebrateAStarCollected; // event invoked when a found star reaches glass jar
         
         isWatchInitialized = true;
     }
@@ -58,20 +58,27 @@ public class WristWatch : MonoBehaviour
 
     private IEnumerator AsyncCelebrateAStarCollected()
     {
-        if (numCollectedStars > emojis.Count)
+        yield return new WaitForSeconds(1f);
+        if (numCollectedStars < StarCounter.Instance.MaxStars)
+        {
+            Instantiate(vfxAStarFound, vfxPlaceholder);
+        }
+        else if (numCollectedStars == StarCounter.Instance.MaxStars)
+        {
+            Instantiate(vfxAllStarsFound, vfxPlaceholder);
+        }
+        else
         {
             yield break;
         }
         
-        yield return new WaitForSeconds(1f);
-        Instantiate(vfxAStarFound, vfxPlaceholder);
         yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
-        
         targetStarImage.texture = null;
-        targetStarImage.texture = emojis[numCollectedStars-1];
-        yield return targetStarImage.transform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad).WaitForCompletion();
-        yield return targetStarImage.transform.DOScale(0.8f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
-        yield return targetStarImage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        if (numCollectedStars > emojis.Count) numCollectedStars = emojis.Count;
+        targetStarImage.texture = emojis[numCollectedStars - 1];
+        yield return targetStarImage.transform.DOScale(1.2f, 0.7f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(0.8f, 0.4f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(1.2f, 0.4f).SetEase(Ease.InOutQuad).WaitForCompletion();
         yield return targetStarImage.transform.DOScale(0.8f, 0.4f).SetEase(Ease.InOutQuad).WaitForCompletion();
         yield return targetStarImage.transform.DOScale(1.2f, 0.4f).SetEase(Ease.InOutQuad).WaitForCompletion();
         yield return targetStarImage.transform.DOScale(1f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
@@ -83,10 +90,6 @@ public class WristWatch : MonoBehaviour
         if (numCollectedStars < targetStars.Count - 1)
         {
             StartCoroutine(AsyncDisplayNewStar());
-        }
-        else
-        {
-            CompleteTask();
         }
     }
 
@@ -107,12 +110,4 @@ public class WristWatch : MonoBehaviour
         
         targetStarImage.texture = targetStars[currentStarIndex];
     }
-
-    private void CompleteTask()
-    {
-        Debug.Log("Task completed!");
-    }
 }
-
-// TODOs
-//     flesh out complete task step
