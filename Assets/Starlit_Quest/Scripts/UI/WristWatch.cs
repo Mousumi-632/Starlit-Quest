@@ -80,8 +80,6 @@ public class WristWatch : MonoBehaviour
         else if (numCollectedStars == StarCounter.Instance.MaxStars)
         {
             Instantiate(vfxAllStarsFound, vfxPlaceholder);
-            audioSource.clip = AllStarsAreCollectedClip;
-            audioSource.Play();
         }
         else
         {
@@ -113,7 +111,7 @@ public class WristWatch : MonoBehaviour
     {
         yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         UpdateTargetStarDisplay();
-        audioSource.clip = AStarIsCollectedClip;
+        audioSource.clip = (numCollectedStars < StarCounter.Instance.MaxStars) ? AStarIsCollectedClip: AllStarsAreCollectedClip;
         audioSource.Play();
         yield return targetStarImage.transform.DOScale(1f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         
