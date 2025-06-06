@@ -14,6 +14,12 @@ public class WristWatch : MonoBehaviour
     [Header("Progress Bar")]
     [SerializeField] private DotProgressBar dotProgressBar;
 
+    [Header("UI VFX")]
+    [SerializeField] private Transform vfxPlaceholder;
+    [SerializeField] private GameObject vfxAStarFound;
+    // [SerializeField] private GameObject vfxAllStarsFound;
+    [SerializeField] private List<Texture> emojis;
+
     private bool isWatchInitialized = false;
     private int numCollectedStars = 0;
     private StarSpawner starSpawner;
@@ -23,7 +29,7 @@ public class WristWatch : MonoBehaviour
     {
         // set default texture
         targetStarImage.texture = null;
-        targetStarImage.texture = targetStars[targetStars.Count - 1]; 
+        targetStarImage.texture = targetStars[targetStars.Count - 1];
     }
 
     private void Update()
@@ -47,8 +53,23 @@ public class WristWatch : MonoBehaviour
     private void CelebrateAStarCollected(int count)
     {
         numCollectedStars = count;
-        // play celebration animation
-        return;
+        StartCoroutine(AsyncCelebrateAStarCollected());
+    }
+
+    private IEnumerator AsyncCelebrateAStarCollected()
+    {
+        yield return new WaitForSeconds(1f);
+        Instantiate(vfxAStarFound, vfxPlaceholder);
+        yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        
+        targetStarImage.texture = null;
+        targetStarImage.texture = emojis[0];
+        yield return targetStarImage.transform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(0.8f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(0.8f, 0.4f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(1.2f, 0.4f).SetEase(Ease.InOutQuad).WaitForCompletion();
+        yield return targetStarImage.transform.DOScale(1f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
     }
 
     private void DisplayNewStar(int starIndex)
@@ -79,7 +100,6 @@ public class WristWatch : MonoBehaviour
         if (currentStarIndex < 0) currentStarIndex = 0;
         if (currentStarIndex >= targetStars.Count - 1) currentStarIndex = targetStars.Count - 2;
         
-        // Debug.Log("======= watch UI index: " + currentStarIndex);
         targetStarImage.texture = targetStars[currentStarIndex];
     }
 
