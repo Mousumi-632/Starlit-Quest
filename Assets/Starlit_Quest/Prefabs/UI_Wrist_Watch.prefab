@@ -199,6 +199,9 @@ MonoBehaviour:
   vfxAStarFound: {fileID: 7909666379364639504, guid: 2e1f31ae78f6447a1b77949d9a3f8130, type: 3}
   emojis:
   - {fileID: 2800000, guid: f88f9afde6fee4098a4855879202d9f9, type: 3}
+  - {fileID: 2800000, guid: de4c8a260540448d9815432ea70b5d90, type: 3}
+  - {fileID: 2800000, guid: b9176a743bc4b4d738d3a32b4614a17b, type: 3}
+  - {fileID: 2800000, guid: a0281bb8c3b5e4850af9e3bc0a9a32bf, type: 3}
 --- !u!1 &4543986775816285964
 GameObject:
   m_ObjectHideFlags: 0

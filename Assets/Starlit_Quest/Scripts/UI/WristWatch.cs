@@ -58,12 +58,17 @@ public class WristWatch : MonoBehaviour
 
     private IEnumerator AsyncCelebrateAStarCollected()
     {
+        if (numCollectedStars > emojis.Count)
+        {
+            yield break;
+        }
+        
         yield return new WaitForSeconds(1f);
         Instantiate(vfxAStarFound, vfxPlaceholder);
         yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         
         targetStarImage.texture = null;
-        targetStarImage.texture = emojis[0];
+        targetStarImage.texture = emojis[numCollectedStars-1];
         yield return targetStarImage.transform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad).WaitForCompletion();
         yield return targetStarImage.transform.DOScale(0.8f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
         yield return targetStarImage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.InOutQuad).WaitForCompletion();
