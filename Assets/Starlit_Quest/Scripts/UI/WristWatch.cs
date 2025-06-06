@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class WristWatch : MonoBehaviour
 {
     [Header("Target Stars")] 
@@ -20,13 +22,25 @@ public class WristWatch : MonoBehaviour
     [SerializeField] private GameObject vfxAllStarsFound;
     [SerializeField] private List<Texture> emojis;
 
+    [Header("Audio Feedback")]
+    [SerializeField] private AudioClip AStarIsCollectedClip;
+    [SerializeField] private AudioClip AllStarsAreCollectedClip;
+
     private bool isWatchInitialized = false;
     private int numCollectedStars = 0;
     private StarSpawner starSpawner;
     private int currentStarIndex;
+    private AudioSource audioSource;
 
     private void Start()
     {
+        // initialize audio setup
+        audioSource = GetComponent<AudioSource>();
+        audioSource.spatialBlend = 1f;
+        audioSource.minDistance = 1f;
+        audioSource.maxDistance = 15f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        
         // set default texture
         targetStarImage.texture = null;
         targetStarImage.texture = targetStars[targetStars.Count - 1];
@@ -66,6 +80,8 @@ public class WristWatch : MonoBehaviour
         else if (numCollectedStars == StarCounter.Instance.MaxStars)
         {
             Instantiate(vfxAllStarsFound, vfxPlaceholder);
+            audioSource.clip = AllStarsAreCollectedClip;
+            audioSource.Play();
         }
         else
         {
@@ -97,6 +113,8 @@ public class WristWatch : MonoBehaviour
     {
         yield return targetStarImage.transform.DOScale(0f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         UpdateTargetStarDisplay();
+        audioSource.clip = AStarIsCollectedClip;
+        audioSource.Play();
         yield return targetStarImage.transform.DOScale(1f, 1f).SetEase(Ease.InOutQuad).WaitForCompletion();
         
         dotProgressBar.UpdateDisplay(numCollectedStars);

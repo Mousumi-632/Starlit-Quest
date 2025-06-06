@@ -20,6 +20,8 @@ public class SoundManager : MonoBehaviour
 
     [Header("Group 3: Star Collection")]
     public AudioClip starCollectedClip;
+    
+    [Header("Group 4: Wrist Watch")]
 
     private AudioSource backgroundSource;
     private AudioSource gazeSource;
