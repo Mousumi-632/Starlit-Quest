@@ -47,13 +47,8 @@ MonoBehaviour:
   backgroundGroup: {fileID: -4139183798761370331, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   gazeGroup: {fileID: 3436846251638986880, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   starGroup: {fileID: 5845993173684000046, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
-  npcGroup: {fileID: 2253349934100166813, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   backgroundClip: {fileID: 8300000, guid: 802def9a598b5394687dc4203f567833, type: 3}
-  onGazeEnterClip: {fileID: 8300000, guid: 62d309269df306e448b70ef9c7cb65bd, type: 3}
-  onGazeExitClip: {fileID: 8300000, guid: 50f8e850a8df7d64bbaecdae7f365595, type: 3}
-  onGazeSelectClip: {fileID: 8300000, guid: d2015f8c3722058478455f4c2791fb97, type: 3}
-  starCollectedClip: {fileID: 8300000, guid: 031bc4c122b1e604cbf3be0e1cd0f72b, type: 3}
-  npcIntroClip: {fileID: 8300000, guid: 53ebbdfa3c5be6346b4fd63b9f114c38, type: 3}
-  npcOneClip: {fileID: 8300000, guid: d93338427c2f3ce478ab577e553c02f7, type: 3}
-  npcTwoClip: {fileID: 8300000, guid: 1102e8bce798f6d41ba8cebe4284aeb6, type: 3}
-  npcThreeClip: {fileID: 8300000, guid: dc23511b01245d64cb8d14f54b2e64f9, type: 3}
+  onGazeEnterClip: {fileID: 8300000, guid: f234523c1d9ba42ddbd39a849e756628, type: 3}
+  onGazeExitClip: {fileID: 8300000, guid: 85267b4537d1b4a218b686822b7598ad, type: 3}
+  onGazeSelectClip: {fileID: 8300000, guid: 0907d335c497b46a79a6ff92be4fdeb0, type: 3}
+  starCollectedClip: {fileID: 8300000, guid: 85f574d1994574412931bf1ad594652f, type: 3}
