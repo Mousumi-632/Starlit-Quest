@@ -15732,6 +15732,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7911738575860453143, guid: ead9cc200d823274eae3aeb7abecd301, type: 3}
+      propertyPath: materialFaderPrefab
+      value: 
+      objectReference: {fileID: 341406262893480147, guid: 25da828b9868948b48fba72285e8c8fa, type: 3}
     - target: {fileID: 8838779189388930251, guid: ead9cc200d823274eae3aeb7abecd301, type: 3}
       propertyPath: m_Name
       value: P_StarlitQuestSceneController

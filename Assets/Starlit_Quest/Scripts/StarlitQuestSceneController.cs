@@ -12,7 +12,8 @@ public class StarlitQuestSceneController : MonoBehaviour
 
     [SerializeField] private GameObject cloudPrefab;
     [SerializeField] private GameObject cometSpawnerPrefab;
-  
+    [SerializeField] private GameObject materialFaderPrefab;
+
 
     private void Awake()
     {
@@ -66,6 +67,6 @@ public class StarlitQuestSceneController : MonoBehaviour
     private void HandleGameFinished()
     {
         // Game finished logic here
-
+    InstantiateIfNotNull(materialFaderPrefab);
     }
 }
