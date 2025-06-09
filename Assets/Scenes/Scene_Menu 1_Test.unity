@@ -284,7 +284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9017837331626889669, guid: 7cdfe8560692efd48af2bd19f678b8ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.19
+      value: 3.29
       objectReference: {fileID: 0}
     - target: {fileID: 9017837331626889669, guid: 7cdfe8560692efd48af2bd19f678b8ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -324,10 +324,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8533789039295253375, guid: 7cdfe8560692efd48af2bd19f678b8ff, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1758738982}
+      addedObject: {fileID: 1758738981}
     - targetCorrespondingSourceObject: {fileID: 8533789039295253375, guid: 7cdfe8560692efd48af2bd19f678b8ff, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1758738981}
+      addedObject: {fileID: 1758738986}
   m_SourcePrefab: {fileID: 100100000, guid: 7cdfe8560692efd48af2bd19f678b8ff, type: 3}
 --- !u!1 &1332247074
 GameObject:
@@ -453,8 +453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneController: {fileID: 1815102575}
---- !u!65 &1758738982
-BoxCollider:
+--- !u!135 &1758738986
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -472,8 +472,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.02, y: 1.39, z: 1.55}
-  m_Center: {x: 0.05, y: 0, z: 0}
+  m_Radius: 0.010793046
+  m_Center: {x: -0.000054438147, y: -0.00015322257, z: 0.0006143201}
 --- !u!1 &1780454665
 GameObject:
   m_ObjectHideFlags: 0
