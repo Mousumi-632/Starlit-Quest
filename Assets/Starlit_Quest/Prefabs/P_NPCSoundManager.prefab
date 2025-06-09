@@ -52,6 +52,7 @@ MonoBehaviour:
   npcFailureClipB: {fileID: 8300000, guid: eb9e08ca44e1d8c4696ecdffbbb3b03c, type: 3}
   npcFailureClipC: {fileID: 8300000, guid: 86b57f0575388454989358b1bfc3e0c7, type: 3}
   npcEndClip: {fileID: 8300000, guid: 73db4968d5a5aeb4e8b353a8817caf3d, type: 3}
+  npcAnimator: {fileID: 5290444036543234616, guid: ef2cb367de2062e498420ee0048185c2, type: 3}
 --- !u!82 &7345005299752041382
 AudioSource:
   m_ObjectHideFlags: 0
