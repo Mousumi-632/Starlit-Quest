@@ -16,6 +16,10 @@ public class NPCSoundManager : MonoBehaviour
     public AudioClip npcFailureClipC;
     public AudioClip npcEndClip;
 
+    [Header("Animation")]
+    public Animator npcAnimator;
+    private readonly string talkingParam = "IsTalking";
+
     private AudioSource npcSource;
     private int gazeFailureCount = 0;
 
@@ -42,7 +46,6 @@ public class NPCSoundManager : MonoBehaviour
             yield return null;
 
         StarCounter.Instance.OnStarsChanged += OnStarsChanged;
-
         OnStarsChanged(StarCounter.Instance.StarsCollected);
     }
 
@@ -71,11 +74,27 @@ public class NPCSoundManager : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         if (clip == null || npcSource == null) return;
+
         npcSource.clip = clip;
         npcSource.Play();
+
+        if (npcAnimator != null)
+            npcAnimator.SetBool(talkingParam, true);
+
+        
+        StartCoroutine(StopTalkingWhenDone());
     }
 
-   
+    private IEnumerator StopTalkingWhenDone()
+    {
+        
+        while (npcSource.isPlaying)
+            yield return null;
+
+        if (npcAnimator != null)
+            npcAnimator.SetBool(talkingParam, false);
+    }
+
     public void NpcGazeFailure()
     {
         AudioClip failureClip = null;
