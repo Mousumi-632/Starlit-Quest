@@ -47,7 +47,7 @@ MonoBehaviour:
   backgroundGroup: {fileID: -4139183798761370331, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   gazeGroup: {fileID: 3436846251638986880, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
   starGroup: {fileID: 5845993173684000046, guid: 63541a3a8e1a2a2408013eb6e408633b, type: 2}
-  backgroundClip: {fileID: 8300000, guid: 802def9a598b5394687dc4203f567833, type: 3}
+  backgroundClip: {fileID: 8300000, guid: c43ba60d3afd8ad4aaf32e6e23ee51ea, type: 3}
   onGazeEnterClip: {fileID: 8300000, guid: f234523c1d9ba42ddbd39a849e756628, type: 3}
   onGazeExitClip: {fileID: 8300000, guid: 85267b4537d1b4a218b686822b7598ad, type: 3}
   onGazeSelectClip: {fileID: 8300000, guid: 0907d335c497b46a79a6ff92be4fdeb0, type: 3}
